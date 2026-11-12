@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P-Proud – Kiêu hãnh đón “kỳ”, tự tin con gái</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ruby:#970A1D; --ruby-dark:#6E0715; --rose:#E999A7; --blush:#EAB5C0; --blush-soft:#FBE3E8;
+  --gold:#F0BF49; --gold-soft:#FDF1D3; --gold-ink:#5A3D00;
+  --mist:#FFF6F7; --white:#FFFFFF; --ink:#3B1820; --ink-soft:#7A5560;
+  --mint:#5FB894; --mint-soft:#E3F4EC; --mint-ink:#1E5B42;
+  --line:#F3D3DA; --radius:20px; --shadow:0 6px 24px rgba(151,10,29,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Nunito",system-ui,sans-serif;color:var(--ink);background:var(--mist);font-size:16px;line-height:1.65}
+h1,h2,h3,h4{font-family:"Baloo 2","Nunito",sans-serif;line-height:1.2;margin:0 0 .5em;color:var(--ruby)}
+h1{font-size:clamp(34px,5vw,56px);font-weight:800}
+h2{font-size:clamp(28px,3.6vw,40px);font-weight:700}
+h3{font-size:22px;font-weight:700}
+h4{font-size:18px;font-weight:700}
+p{margin:0 0 1em}
+a{color:var(--ruby)}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.demo-bar{background:var(--ruby);color:#fff;text-align:center;font-size:13px;padding:6px 12px;font-weight:600}
+header{position:sticky;top:0;z-index:40;background:rgba(255,246,247,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:16px;height:72px}
+.nav .logo img{height:44px;width:auto}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul a{display:block;padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px}
+.nav ul a:hover{background:var(--blush-soft)}
+.nav ul a.active{background:var(--ruby);color:#fff}
+.menu-btn{display:none;margin-left:auto;background:none;border:0;font-size:28px;color:var(--ruby)}
+@media(max-width:1020px){
+  .menu-btn{display:block}
+  .nav ul{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:var(--mist);padding:12px 20px 20px;border-bottom:1px solid var(--line)}
+  .nav ul.open{display:flex}
+}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 24px;font-weight:800;font-size:16px;border:2px solid var(--ruby);text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--ruby);color:#fff}
+.btn-primary:hover{background:var(--ruby-dark)}
+.btn-ghost{background:#fff;color:var(--ruby)}
+.btn-sm{padding:8px 16px;font-size:14px}
+.chip{display:inline-block;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700;background:var(--blush-soft);color:var(--ruby)}
+.chip.gold{background:var(--gold-soft);color:var(--gold-ink)}
+.chip.mint{background:var(--mint-soft);color:var(--mint-ink)}
+section.page{display:none;padding-bottom:64px}
+section.page.show{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.block{padding:56px 0 0}
+.lead{font-size:18px;color:var(--ink-soft);max-width:720px}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.card.soft{background:var(--blush-soft);border-color:transparent;box-shadow:none}
+.page-head{display:flex;align-items:center;gap:24px;padding:48px 0 8px;flex-wrap:wrap}
+.page-head img{height:150px;width:auto}
+.page-head div{flex:1;min-width:260px}
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center;padding:48px 0 24px}
+.hero .tag{font-family:"Baloo 2";font-weight:700;color:var(--rose);font-size:20px;margin-bottom:6px}
+.hero h1 span{color:var(--rose)}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.hero-art{position:relative;display:flex;justify-content:center}
+.hero-art .blob{position:absolute;inset:8% 6%;background:var(--blush);border-radius:46% 54% 50% 50%/55% 45% 55% 45%;z-index:0}
+.hero-art img{position:relative;z-index:1;max-height:420px;width:auto;animation:bob 3.5s ease-in-out infinite}
+.hero-art .bubble{position:absolute;z-index:2;top:6%;right:4%;background:#fff;border:2px solid var(--rose);border-radius:20px;padding:8px 16px;font-family:"Baloo 2";font-weight:700;color:var(--ruby)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.hero-art img{max-height:300px}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.stat{background:#fff;border-radius:var(--radius);padding:20px;text-align:center;border:1px solid var(--line)}
+.stat b{display:block;font-family:"Baloo 2";font-size:34px;color:var(--ruby);line-height:1.1}
+.stat span{font-size:14px;color:var(--ink-soft)}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+.pillar{text-align:center}
+.pillar img{height:120px;width:auto;margin:0 auto 12px}
+.pillar .p{font-family:"Baloo 2";font-weight:800;font-size:15px;color:var(--rose);letter-spacing:.5px}
+.teaser{display:flex;gap:20px;align-items:center}
+.teaser img{height:130px;width:auto;flex-shrink:0}
+@media(max-width:560px){.teaser{flex-direction:column;text-align:center}}
+.sponsors{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.sponsor{background:#fff;border:1px dashed var(--rose);border-radius:16px;padding:14px 20px;text-align:center;min-width:180px}
+.sponsor b{display:block;font-family:"Baloo 2";color:var(--ruby);font-size:18px}
+.sponsor span{font-size:13px;color:var(--ink-soft)}
+/* about */
+.vm{display:flex;gap:16px;align-items:flex-start}
+.vm .ico{width:48px;height:48px;border-radius:14px;background:var(--gold-soft);display:grid;place-items:center;font-size:24px;flex-shrink:0}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:ph}
+.phase{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;position:relative}
+.phase .n{width:34px;height:34px;border-radius:50%;background:var(--ruby);color:#fff;display:grid;place-items:center;font-family:"Baloo 2";font-weight:800;margin-bottom:10px}
+.phase small{color:var(--rose);font-weight:800}
+.phase p{font-size:14px;margin:6px 0 0;color:var(--ink-soft)}
+@media(max-width:900px){.timeline{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.timeline{grid-template-columns:1fr}}
+.member{text-align:center}
+.avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-family:"Baloo 2";font-weight:800;font-size:24px;color:var(--ruby);background:var(--blush-soft);border:3px solid var(--gold)}
+.member b{display:block;font-size:17px}
+.member span{font-size:14px;color:var(--ink-soft)}
+.stake h4{display:flex;align-items:center;gap:8px}
+.stake ul{margin:0;padding-left:18px;font-size:15px}
+/* filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 24px}
+.filters button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:700;color:var(--ink)}
+.filters button.on{background:var(--ruby);border-color:var(--ruby);color:#fff}
+.kit{display:flex;flex-direction:column}
+.kit .cover{height:150px;border-radius:16px;margin-bottom:16px;display:grid;place-items:center;background:var(--blush-soft)}
+.kit .cover img{height:120px;width:auto}
+.kit .meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.kit p{font-size:15px;color:var(--ink-soft);flex:1}
+.lessons{counter-reset:ls;display:grid;gap:12px}
+.lesson{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 18px}
+.lesson .num{width:40px;height:40px;border-radius:12px;background:var(--gold);color:var(--gold-ink);display:grid;place-items:center;font-family:"Baloo 2";font-weight:800;font-size:20px;flex-shrink:0}
+.lesson div{flex:1}
+.lesson small{color:var(--ink-soft)}
+/* blog */
+.post{display:flex;flex-direction:column;cursor:pointer;transition:transform .15s}
+.post:hover{transform:translateY(-4px)}
+.post .thumb{height:150px;border-radius:16px;margin-bottom:14px;display:grid;place-items:center}
+.post .thumb img{height:120px;width:auto}
+.post h3{font-size:20px}
+.post p{font-size:15px;color:var(--ink-soft);flex:1}
+.post .foot{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft);align-items:center}
+/* forum */
+.forum-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+@media(max-width:900px){.forum-layout{grid-template-columns:1fr}}
+.thread{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-bottom:14px}
+.thread .top{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.nick{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;font-size:14px}
+.thread h4{margin:0 0 6px;color:var(--ink)}
+.thread .acts{display:flex;gap:14px;font-size:14px;color:var(--ink-soft);margin-top:10px;flex-wrap:wrap}
+.thread .acts button{background:none;border:0;color:var(--ink-soft);font-weight:700;padding:0}
+.thread .acts button:hover{color:var(--ruby)}
+.answer{margin-top:12px;background:var(--gold-soft);border-radius:14px;padding:12px 14px;font-size:15px}
+.answer b{color:var(--gold-ink)}
+.answer.peer{background:var(--blush-soft)}
+.answer.peer b{color:var(--ruby)}
+.rules li{margin-bottom:6px;font-size:15px}
+input,textarea,select{font-family:inherit;font-size:15px;border:2px solid var(--line);border-radius:14px;padding:10px 14px;width:100%;background:#fff;color:var(--ink)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--rose)}
+label{font-weight:700;font-size:14px;display:block;margin:10px 0 6px}
+.err{color:var(--ruby);font-size:13px;margin-top:6px;min-height:1em}
+/* games */
+.game-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px}
+.game-tabs button{display:flex;align-items:center;gap:8px;border:2px solid var(--line);background:#fff;border-radius:18px;padding:8px 16px 8px 8px;font-weight:800;color:var(--ink);font-size:15px}
+.game-tabs button img{height:42px;width:auto}
+.game-tabs button.on{border-color:var(--ruby);background:var(--blush-soft);color:var(--ruby)}
+.scorebar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.points{background:var(--gold);color:var(--gold-ink);font-weight:800;border-radius:999px;padding:6px 16px;font-family:"Baloo 2";font-size:18px}
+.mf-card{max-width:560px;margin:0 auto;background:#fff;border:3px solid var(--blush);border-radius:28px;padding:32px;text-align:center;box-shadow:var(--shadow)}
+.mf-card .q{font-family:"Baloo 2";font-size:24px;font-weight:700;color:var(--ink);min-height:96px;display:grid;place-items:center}
+.mf-btns{display:flex;gap:14px;justify-content:center;margin-top:18px}
+.mf-btns button{flex:1;max-width:200px;border:0;border-radius:18px;padding:16px;font-family:"Baloo 2";font-weight:800;font-size:22px}
+.b-myth{background:var(--blush-soft);color:var(--ruby)}
+.b-fact{background:var(--mint-soft);color:var(--mint-ink)}
+.feedback{margin-top:18px;border-radius:16px;padding:14px;text-align:left;font-size:15px;display:none}
+.feedback.ok{display:block;background:var(--mint-soft);color:var(--mint-ink)}
+.feedback.no{display:block;background:var(--blush-soft);color:var(--ruby-dark)}
+.progress{height:10px;background:var(--blush-soft);border-radius:99px;overflow:hidden;margin:6px 0 18px}
+.progress i{display:block;height:100%;background:var(--rose);border-radius:99px;transition:width .3s}
+.quiz-opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:10px;font-size:16px;font-weight:600;color:var(--ink)}
+.quiz-opt:hover{border-color:var(--rose)}
+.quiz-opt.right{background:var(--mint-soft);border-color:var(--mint);color:var(--mint-ink)}
+.quiz-opt.wrong{background:var(--blush-soft);border-color:var(--ruby);color:var(--ruby-dark)}
+.items{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.item{background:#fff;border:2px solid var(--line);border-radius:18px;padding:14px;text-align:center;font-weight:700;font-size:15px}
+.item .e{font-size:34px;display:block;margin-bottom:6px}
+.item.sel{border-color:var(--ruby);background:var(--blush-soft)}
+.item.good{border-color:var(--mint);background:var(--mint-soft)}
+.item.bad{border-color:var(--ruby);background:#fff;opacity:.6}
+.bag{display:flex;align-items:center;gap:16px;margin:18px 0}
+.bag .sack{font-size:56px}
+.win{text-align:center;padding:24px}
+.win img{height:150px;width:auto;margin:0 auto 10px}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(59,24,32,.45);display:none;align-items:center;justify-content:center;z-index:80;padding:20px}
+.modal.show{display:flex}
+.modal .box{background:#fff;border-radius:24px;max-width:680px;width:100%;max-height:86vh;overflow:auto;padding:28px;position:relative}
+.modal .x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:0;background:var(--blush-soft);color:var(--ruby);font-size:20px;font-weight:800}
+.modal .box ul{padding-left:20px}
+/* chat */
+.chat-fab{position:fixed;right:20px;bottom:20px;z-index:60;border:0;background:none;padding:0;display:flex;align-items:flex-end;gap:8px}
+.chat-fab img{height:96px;width:auto;filter:drop-shadow(0 6px 12px rgba(151,10,29,.25));animation:bob 3s ease-in-out infinite}
+.chat-fab span{background:#fff;border:2px solid var(--rose);border-radius:16px 16px 4px 16px;padding:8px 12px;font-family:"Baloo 2";font-weight:700;color:var(--ruby);margin-bottom:60px;font-size:15px}
+@media(max-width:600px){.chat-fab span{display:none}.chat-fab img{height:72px}.hero{padding-top:24px}}
+.chat{position:fixed;right:20px;bottom:20px;z-index:70;width:min(400px,calc(100vw - 24px));height:min(600px,calc(100vh - 40px));background:#fff;border-radius:26px;box-shadow:0 18px 48px rgba(151,10,29,.25);display:none;flex-direction:column;overflow:hidden;border:2px solid var(--blush)}
+.chat.show{display:flex}
+.chat-head{background:var(--ruby);color:#fff;display:flex;align-items:center;gap:10px;padding:12px 14px}
+.chat-head img{height:48px;width:auto;background:var(--blush);border-radius:50%;padding:2px 6px}
+.chat-head b{font-family:"Baloo 2";font-size:19px;display:block;line-height:1.1}
+.chat-head small{opacity:.85;font-size:12px}
+.chat-head button{margin-left:auto;background:rgba(255,255,255,.18);border:0;color:#fff;width:34px;height:34px;border-radius:50%;font-size:18px}
+.chat-body{flex:1;overflow:auto;padding:16px;background:var(--mist);display:flex;flex-direction:column;gap:10px}
+.msg{max-width:85%;padding:10px 14px;border-radius:18px;font-size:15px;line-height:1.5;word-wrap:break-word}
+.msg.bot{background:#fff;border:1px solid var(--line);border-bottom-left-radius:6px;align-self:flex-start}
+.msg.me{background:var(--ruby);color:#fff;border-bottom-right-radius:6px;align-self:flex-end}
+.msg.bot ul{margin:4px 0;padding-left:18px}
+.msg.bot p{margin:0 0 6px}
+.msg.bot p:last-child{margin:0}
+.suggest{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 10px;background:var(--mist)}
+.suggest button{border:1.5px solid var(--rose);background:#fff;color:var(--ruby);border-radius:999px;padding:5px 10px;font-size:13px;font-weight:700}
+.chat-foot{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chat-foot input{border-radius:999px}
+.chat-foot button{border:0;background:var(--ruby);color:#fff;border-radius:999px;padding:0 18px;font-weight:800}
+.chat-note{font-size:11px;color:var(--ink-soft);text-align:center;padding:0 12px 10px}
+.typing{display:inline-flex;gap:4px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--rose);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+footer{background:var(--ruby);color:#fff;padding:40px 0 28px;margin-top:40px}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px}
+footer a{color:#fff;text-decoration:none;display:block;margin-bottom:6px;opacity:.9}
+footer h4{color:var(--gold)}
+footer .help{background:rgba(255,255,255,.12);border-radius:16px;padding:14px;font-size:14px}
+@media(max-width:720px){footer .cols{grid-template-columns:1fr}}
+.center{text-align:center}
+.mt{margin-top:24px}
+.sec-title{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+</style>
+</head>
+<body>
+<div class="demo-bar">Bản demo website dự án P-Proud – nội dung và số liệu mang tính minh họa</div>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#home" aria-label="P-Proud trang chủ"><img src="assets/logo.png" alt="P-Proud"></a>
+    <button class="menu-btn" aria-label="Mở menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    <ul id="menu">
+      <li><a href="#home" data-r="home">Trang chủ</a></li>
+      <li><a href="#about" data-r="about">Về chúng mình</a></li>
+      <li><a href="#toolkits" data-r="toolkits">Bộ công cụ</a></li>
+      <li><a href="#community" data-r="community">Cộng đồng</a></li>
+      <li><a href="#blog" data-r="blog">Blog</a></li>
+      <li><a href="#forum" data-r="forum">Diễn đàn</a></li>
+      <li><a href="#games" data-r="games">Góc trò chơi</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="page" id="home">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <div class="tag">Be Proud of your Period</div>
+        <h1>Kiêu hãnh đón “kỳ”,<br><span>tự tin con gái</span></h1>
+        <p class="lead">P-Proud là người bạn đồng hành giúp nữ sinh lớp 6–7 hiểu đúng về kinh nguyệt và tuổi dậy thì, tự tin chăm sóc bản thân và biết tìm sự hỗ trợ khi cần.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#toolkits">Bắt đầu học</a>
+          <button class="btn btn-ghost" onclick="openChat()">Trò chuyện với PiPi</button>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="blob"></div>
+        <img src="assets/pipi-main.png" alt="Mascot PiPi">
+        <div class="bubble">Chào bạn, mình là PiPi!</div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>120</b><span>nữ sinh lớp 6–7 tham gia</span></div>
+      <div class="stat"><b>6</b><span>bài học tương tác</span></div>
+      <div class="stat"><b>100%</b><span>học sinh nhận bộ vật dụng vệ sinh</span></div>
+      <div class="stat"><b>23</b><span>tuần triển khai dự án</span></div>
+    </div>
+
+    <div class="block">
+      <div class="center"><h2>Ba chữ P của chúng mình</h2><p class="lead" style="margin:0 auto 28px">Mỗi nội dung trên P-Proud đều xoay quanh ba trụ cột giúp bạn hiểu cơ thể mình và tự tin hơn mỗi ngày.</p></div>
+      <div class="grid g3">
+        <div class="card pillar"><img src="assets/pipi-teach.png" alt=""><div class="p">P – PERIOD</div><h3>Hiểu về kinh nguyệt</h3><p>Chu kỳ là gì, vì sao có kinh, chăm sóc bản thân trong những ngày “đèn đỏ” ra sao.</p></div>
+        <div class="card pillar"><img src="assets/pipi-wonder.png" alt=""><div class="p">P – PUBERTY</div><h3>Lớn lên tự tin</h3><p>Những thay đổi của cơ thể và cảm xúc ở tuổi dậy thì đều là điều bình thường.</p></div>
+        <div class="card pillar"><img src="assets/pipi-paint.png" alt=""><div class="p">P – PEER</div><h3>Tôn trọng lẫn nhau</h3><p>Bạn nam và bạn nữ cùng hiểu đúng để không còn trêu chọc hay xấu hổ.</p></div>
+      </div>
+    </div>
+
+    <div class="block grid g2">
+      <div class="card soft teaser"><img src="assets/pipi-jump.png" alt=""><div><h3>Vừa chơi vừa học</h3><p>Thử thách “Myth hay Fact”, quiz 6 bài học và trò chơi chuẩn bị túi kỳ đầu đang chờ bạn.</p><a class="btn btn-primary btn-sm" href="#games">Vào Góc trò chơi</a></div></div>
+      <div class="card soft teaser" style="background:var(--gold-soft)"><img src="assets/pipi-teach.png" alt=""><div><h3>Bộ công cụ miễn phí</h3><p>Cẩm nang nữ sinh, sổ tay giáo viên và poster song ngữ cho lớp học của bạn.</p><a class="btn btn-primary btn-sm" href="#toolkits">Xem bộ công cụ</a></div></div>
+    </div>
+
+    <div class="block">
+      <div class="sec-title"><h2 style="margin:0">Bài viết mới</h2><a class="btn btn-ghost btn-sm" href="#blog">Xem tất cả</a></div>
+      <div class="grid g3" id="home-posts"></div>
+    </div>
+
+    <div class="block center">
+      <h2>Đồng hành cùng P-Proud</h2>
+      <p class="lead" style="margin:0 auto 20px">Nhà tài trợ và đối tác dự kiến của dự án</p>
+      <div class="sponsors" id="sponsor-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="about">
+  <div class="wrap">
+    <div class="page-head"><img src="assets/pipi-hi.png" alt=""><div><span class="chip">Về chúng mình</span><h1 style="margin-top:8px">Xin chào, đây là P-Proud!</h1><p class="lead">P-Proud là dự án giáo dục sức khỏe kinh nguyệt do 6 sinh viên UEH thực hiện, dành cho 120 nữ sinh lớp 6–7 tại một trường THCS ở Quận 8, TP.HCM. Chúng mình tin rằng có kinh là một phần bình thường và đáng tự hào của việc lớn lên.</p></div></div>
+
+    <div class="block grid g2">
+      <div class="card vm"><div class="ico">🌸</div><div><h3>Tầm nhìn</h3><p style="margin:0">Mỗi bạn nữ đều bước vào tuổi dậy thì với đủ hiểu biết, sự tự tin và một môi trường học đường tôn trọng, không còn kỳ thị kinh nguyệt.</p></div></div>
+      <div class="card vm"><div class="ico">👑</div><div><h3>Sứ mệnh</h3><p style="margin:0">Mang kiến thức kinh nguyệt chính xác, phù hợp lứa tuổi đến học sinh qua website, bài học trực tiếp và bộ công cụ mà nhà trường có thể dùng lại lâu dài.</p></div></div>
+    </div>
+
+    <div class="block">
+      <h2>Hoạt động của dự án</h2>
+      <p class="lead">Dự án kéo dài 23 tuần, chia thành 5 giai đoạn.</p>
+      <div class="timeline mt">
+        <div class="phase"><div class="n">1</div><small>Tuần 1–7</small><h4>Khởi động và kết nối</h4><p>Lập kế hoạch, làm việc với nhà trường và nhà tài trợ.</p></div>
+        <div class="phase"><div class="n">2</div><small>Tuần 8–13</small><h4>Website và tài liệu</h4><p>Xây dựng website, soạn bài học, in cẩm nang và poster.</p></div>
+        <div class="phase"><div class="n">3</div><small>Tuần 14–17</small><h4>Chuẩn bị và thử nghiệm</h4><p>Mua vật dụng, chạy thử với nhóm nhỏ và hoàn thiện.</p></div>
+        <div class="phase"><div class="n">4</div><small>Tuần 18–20</small><h4>Triển khai tại trường</h4><p>6 bài học, trò chơi, trao bộ vật dụng vệ sinh.</p></div>
+        <div class="phase"><div class="n">5</div><small>Tuần 20–23</small><h4>Đánh giá và bàn giao</h4><p>Đo kết quả, tập huấn giáo viên, bàn giao cho nhà trường.</p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Đội ngũ P-Proud</h2>
+      <div class="grid mt" id="team" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))"></div>
+    </div>
+
+    <div class="block">
+      <h2>Các bên đồng hành</h2>
+      <div class="grid g3 mt">
+        <div class="card stake"><h4>🏫 Nhà trường</h4><ul><li>Trường THCS đối tác tại Quận 8, TP.HCM</li><li>Ban giám hiệu, giáo viên chủ nhiệm và nhân viên y tế trường</li></ul></div>
+        <div class="card stake"><h4>🩺 Hội đồng chuyên môn</h4><ul><li>Bác sĩ Sản phụ khoa, ĐH Y Dược TP.HCM</li><li>Chuyên gia tâm lý giáo dục</li><li>Giáo viên Sinh học THCS</li><li>Đại diện Hội Liên hiệp Phụ nữ</li></ul></div>
+        <div class="card stake"><h4>🤝 Nhà tài trợ dự kiến</h4><ul><li>Dạ Hương – Dược phẩm Hoa Linh</li><li>Diana Unicharm Việt Nam</li><li>Kao Việt Nam – Laurier</li><li>TELOS (hỗ trợ thiết kế website)</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLKITS -->
+<section class="page" id="toolkits">
+  <div class="wrap">
+    <div class="page-head"><img src="assets/pipi-teach.png" alt=""><div><span class="chip">Bộ công cụ</span><h1 style="margin-top:8px">Bộ công cụ P-Proud</h1><p class="lead">Tài liệu được soạn cùng hội đồng chuyên môn, phù hợp với học sinh 11–13 tuổi. Thầy cô và phụ huynh có thể dùng lại mỗi năm học.</p></div></div>
+    <div class="filters" id="kit-filters"></div>
+    <div class="grid g3" id="kits"></div>
+    <div class="block">
+      <h2>6 bài học trực tuyến</h2>
+      <p class="lead">Học theo thứ tự hoặc chọn bài bạn quan tâm. Cuối mỗi bài có một quiz nhỏ.</p>
+      <div class="lessons mt" id="lessons"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="page" id="community">
+  <div class="wrap">
+    <div class="page-head"><img src="assets/pipi-flowers.png" alt=""><div><span class="chip">Cộng đồng</span><h1 style="margin-top:8px">Cộng đồng P-Proud</h1><p class="lead">Nơi học sinh, thầy cô, phụ huynh và nhà tài trợ cùng lan tỏa thông điệp “kiêu hãnh đón kỳ”.</p></div></div>
+    <div class="grid g4 mt">
+      <div class="stat"><b>120</b><span>nữ sinh tham gia</span></div>
+      <div class="stat"><b>≥ 3</b><span>giáo viên được tập huấn</span></div>
+      <div class="stat"><b>20</b><span>poster lớp học</span></div>
+      <div class="stat"><b>50</b><span>đầu sách cho thư viện</span></div>
+    </div>
+    <div class="block">
+      <h2>Hoạt động nổi bật</h2>
+      <div class="grid g3 mt">
+        <div class="card"><div class="post thumb" style="background:var(--blush-soft);height:150px;border-radius:16px;display:grid;place-items:center;margin-bottom:14px"><img src="assets/pipi-teach.png" alt="" style="height:120px;width:auto"></div><span class="chip">Tuần 18–20</span><h3 class="mt" style="margin-top:10px">Lớp học P-Proud</h3><p>6 buổi học tương tác tại trường, kết hợp thảo luận, trò chơi và quiz.</p></div>
+        <div class="card"><div style="background:var(--gold-soft);height:150px;border-radius:16px;display:grid;place-items:center;margin-bottom:14px"><img src="assets/pipi-drum.png" alt="" style="height:120px;width:auto"></div><span class="chip gold">Ngày hội</span><h3 style="margin-top:10px">Gian hàng Myth hay Fact</h3><p>Học sinh cùng nhau “bóc mẽ” những hiểu lầm quen thuộc về kinh nguyệt.</p></div>
+        <div class="card"><div style="background:var(--mint-soft);height:150px;border-radius:16px;display:grid;place-items:center;margin-bottom:14px"><img src="assets/pipi-zen.png" alt="" style="height:120px;width:auto"></div><span class="chip mint">Bàn giao</span><h3 style="margin-top:10px">Góc nữ sinh tại phòng y tế</h3><p>Tủ băng vệ sinh, sách và poster ở lại trường để hỗ trợ các khóa sau.</p></div>
+      </div>
+    </div>
+    <div class="block grid g2">
+      <div class="card">
+        <h3>Trở thành Đại sứ P-Proud</h3>
+        <p>Bạn muốn lan tỏa thông điệp đến bạn bè? Để lại thông tin, nhóm sẽ liên hệ qua thầy cô chủ nhiệm.</p>
+        <form id="amb-form" novalidate>
+          <label for="amb-nick">Biệt danh</label><input id="amb-nick" placeholder="Hoa Hướng Dương">
+          <label for="amb-role">Bạn là</label>
+          <select id="amb-role"><option value="">Chọn một</option><option>Học sinh</option><option>Thầy cô</option><option>Phụ huynh</option></select>
+          <label for="amb-why">Vì sao bạn muốn tham gia?</label><textarea id="amb-why" rows="3" placeholder="Mình muốn các bạn trong lớp bớt ngại khi nói về kinh nguyệt"></textarea>
+          <div class="err" id="amb-err"></div>
+          <button class="btn btn-primary" type="submit">Gửi đăng ký</button>
+        </form>
+        <p style="font-size:13px;color:var(--ink-soft);margin-top:10px">Không cần nhập họ tên thật hay số điện thoại.</p>
+      </div>
+      <div class="card soft center" style="display:flex;flex-direction:column;justify-content:center;align-items:center">
+        <img src="assets/pipi-flowers.png" alt="" style="height:160px;width:auto;margin-bottom:10px">
+        <h3>Cảm ơn nhà tài trợ</h3>
+        <p>P-Proud trân trọng sự đồng hành của các nhà tài trợ dự kiến đã cùng chung tay vì sức khỏe nữ sinh.</p>
+        <div class="sponsors" id="sponsor-list-2"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="page" id="blog">
+  <div class="wrap">
+    <div class="page-head"><img src="assets/pipi-calm.png" alt=""><div><span class="chip">Blog</span><h1 style="margin-top:8px">Góc đọc của PiPi</h1><p class="lead">Bài viết ngắn, dễ hiểu về kinh nguyệt, tuổi dậy thì, chăm sóc bản thân và bình đẳng giới.</p></div></div>
+    <div class="filters" id="blog-filters"></div>
+    <div class="grid g3" id="posts"></div>
+  </div>
+</section>
+
+<!-- FORUM -->
+<section class="page" id="forum">
+  <div class="wrap">
+    <div class="page-head"><img src="assets/pipi-search.png" alt=""><div><span class="chip">Diễn đàn</span><h1 style="margin-top:8px">Diễn đàn hỏi đáp</h1><p class="lead">Hỏi điều bạn còn ngại hỏi. Bạn có thể đăng ẩn danh, câu trả lời có vương miện vàng đến từ chuyên gia.</p></div></div>
+    <div class="forum-layout mt">
+      <div>
+        <div class="filters" id="forum-filters" style="margin-top:0"></div>
+        <div id="threads"></div>
+      </div>
+      <aside>
+        <div class="card" style="margin-bottom:16px">
+          <h4>Đặt câu hỏi mới</h4>
+          <form id="ask-form" novalidate>
+            <label for="ask-topic">Chủ đề</label>
+            <select id="ask-topic"><option value="">Chọn chủ đề</option><option>Kinh nguyệt</option><option>Tuổi dậy thì</option><option>Cảm xúc</option><option>Bình đẳng giới</option></select>
+            <label for="ask-q">Câu hỏi của bạn</label>
+            <textarea id="ask-q" rows="4" placeholder="Lần đầu có kinh thì nên chuẩn bị gì?"></textarea>
+            <label style="display:flex;gap:8px;align-items:center;font-weight:600"><input type="checkbox" id="ask-anon" checked style="width:auto"> Đăng ẩn danh</label>
+            <div class="err" id="ask-err"></div>
+            <button class="btn btn-primary btn-sm" type="submit">Đăng câu hỏi</button>
+          </form>
+        </div>
+        <div class="card soft rules">
+          <h4>📌 Nội quy cộng đồng</h4>
+          <ul style="padding-left:18px;margin:0">
+            <li>Không chia sẻ họ tên thật, trường, địa chỉ hay số điện thoại.</li>
+            <li>Tôn trọng mọi câu hỏi, không chê cười hay trêu chọc.</li>
+            <li>Câu trả lời trên diễn đàn không thay thế việc đi khám.</li>
+            <li>Thấy nội dung không phù hợp, hãy bấm “Báo cáo”.</li>
+            <li>Cần giúp đỡ khẩn cấp? Gọi Tổng đài 111 (miễn phí, 24/7).</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- GAMES -->
+<section class="page" id="games">
+  <div class="wrap">
+    <div class="page-head"><img src="assets/pipi-jump.png" alt=""><div><span class="chip">Góc trò chơi</span><h1 style="margin-top:8px">Vừa chơi vừa học</h1><p class="lead">Thu thập điểm vương miện qua ba trò chơi. Điểm của bạn được cộng dồn trong lần truy cập này.</p></div></div>
+    <div class="scorebar"><div class="game-tabs" id="game-tabs" style="margin:0">
+      <button data-g="mf" class="on"><img src="assets/pipi-search.png" alt="">Myth hay Fact</button>
+      <button data-g="quiz"><img src="assets/pipi-teach.png" alt="">Quiz 6 bài học</button>
+      <button data-g="bag"><img src="assets/pipi-happy.png" alt="">Túi kỳ đầu</button>
+    </div><div class="points">👑 <span id="pts">0</span> điểm</div></div>
+    <div class="card" id="game-area" style="padding:32px"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <h3 style="color:#fff">P-Proud</h3>
+      <p style="opacity:.9">Kiêu hãnh đón “kỳ”, tự tin con gái. Dự án giáo dục sức khỏe kinh nguyệt cho nữ sinh lớp 6–7, thực hiện bởi Nhóm 1 – UEH.</p>
+      <div class="help">💬 Cần giúp đỡ ngay? Hãy nói với bố mẹ, thầy cô hoặc nhân viên y tế trường. Bạn cũng có thể gọi <b>Tổng đài quốc gia bảo vệ trẻ em 111</b> (miễn phí, 24/7).</div>
+    </div>
+    <div><h4>Khám phá</h4><a href="#about">Về chúng mình</a><a href="#toolkits">Bộ công cụ</a><a href="#blog">Blog</a><a href="#games">Góc trò chơi</a></div>
+    <div><h4>Kết nối</h4><a href="#community">Cộng đồng</a><a href="#forum">Diễn đàn</a><a href="#home" onclick="openChat()">Hỏi PiPi</a></div>
+  </div>
+  <div class="wrap" style="margin-top:20px;font-size:13px;opacity:.75">© 2026 P-Proud · Bản demo phục vụ môn Quản trị dự án kinh doanh quốc tế</div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="box"><button class="x" aria-label="Đóng" onclick="closeModal()">×</button><div id="modal-body"></div></div></div>
+
+<button class="chat-fab" id="chat-fab" onclick="openChat()" aria-label="Trò chuyện với PiPi"><span>Hỏi PiPi nè!</span><img src="assets/pipi-hi.png" alt=""></button>
+<div class="chat" id="chat" aria-label="Trò chuyện với PiPi">
+  <div class="chat-head"><img src="assets/pipi-main.png" alt=""><div><b>PiPi</b><small>Bạn đồng hành của P-Proud</small></div><button onclick="closeChat()" aria-label="Đóng">×</button></div>
+  <div class="chat-body" id="chat-body"></div>
+  <div class="suggest" id="suggest"></div>
+  <form class="chat-foot" id="chat-form"><input id="chat-input" placeholder="Hỏi PiPi điều bạn thắc mắc…" autocomplete="off"><button type="submit">Gửi</button></form>
+  <div class="chat-note">PiPi là AI, có thể nhầm lẫn. Với vấn đề sức khỏe, hãy hỏi người lớn hoặc bác sĩ.</div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- data ---------- */
+const sponsors=[
+  {n:'Dạ Hương',d:'Dược phẩm Hoa Linh'},
+  {n:'Diana',d:'Diana Unicharm Việt Nam'},
+  {n:'Laurier',d:'Kao Việt Nam'},
+  {n:'TELOS',d:'Thiết kế website'}
+];
+const team=[
+  ['NH','Nhật Hà','Quản lý dự án'],['KT','Kiều Trang','Trưởng nhóm đối tác'],['UP','Uyên Phương','Trưởng nhóm nội dung'],
+  ['TN','Thục Nhi','Trưởng nhóm website'],['XT','Xuân Tiếp','Trưởng nhóm vận hành'],['VN','Vân Như','Trưởng nhóm giám sát và đánh giá']
+];
+const kits=[
+  {t:'Cẩm nang nữ sinh',a:'hs',img:'pipi-wonder',bg:'var(--blush-soft)',tags:['Học sinh','A5 · 35 trang'],d:'Sổ tay màu dễ thương giải thích chu kỳ, cách dùng băng vệ sinh và chăm sóc bản thân.',outline:['Cơ thể mình đang lớn lên','Kinh nguyệt là gì?','Chu kỳ và các giai đoạn','Chọn và dùng băng vệ sinh','Chăm sóc bản thân trong kỳ kinh','Khi nào cần hỏi người lớn?']},
+  {t:'Sổ tay giáo viên',a:'gv',img:'pipi-teach',bg:'var(--gold-soft)',tags:['Giáo viên','A4 · 6 giáo án'],d:'Giáo án chi tiết cho 6 buổi học, gợi ý trả lời câu hỏi nhạy cảm và cách xử lý khi học sinh bị trêu.',outline:['Mục tiêu và cách dùng sổ tay','6 giáo án chi tiết','Ngân hàng câu hỏi Myth hay Fact','Gợi ý trả lời câu hỏi khó','Xử lý tình huống trêu chọc','Phiếu đánh giá trước và sau']},
+  {t:'Poster song ngữ',a:'gv',img:'pipi-paint',bg:'var(--mint-soft)',tags:['Lớp học','A3 · 20 tờ'],d:'Bộ poster Việt – Anh về chu kỳ kinh nguyệt và vệ sinh cá nhân để treo trong lớp và phòng y tế.',outline:['Chu kỳ kinh nguyệt của bạn','5 bước thay băng vệ sinh','Myth hay Fact?','Kinh nguyệt là chuyện bình thường','Bạn có thể hỏi ai?']},
+  {t:'Hướng dẫn cho phụ huynh',a:'ph',img:'pipi-flowers',bg:'var(--blush-soft)',tags:['Phụ huynh','Bản điện tử'],d:'Gợi ý cách trò chuyện cởi mở với con về kỳ kinh đầu tiên và chuẩn bị đồ dùng cùng con.',outline:['Vì sao nên nói chuyện sớm?','Gợi ý câu mở đầu','Chuẩn bị túi kỳ đầu cùng con','Dấu hiệu cần đưa con đi khám']},
+  {t:'Hướng dẫn quản trị website',a:'gv',img:'pipi-search',bg:'var(--gold-soft)',tags:['Nhà trường','A4'],d:'Cách đăng nhập, cập nhật bài viết, xem báo cáo học tập và duyệt câu hỏi trên diễn đàn.',outline:['Đăng nhập tài khoản quản trị','Cập nhật bài viết và bài học','Xem tiến độ học với mã ẩn danh','Duyệt và báo cáo nội dung diễn đàn']},
+  {t:'Bộ vật dụng vệ sinh',a:'hs',img:'pipi-happy',bg:'var(--mint-soft)',tags:['Học sinh','120 bộ'],d:'Túi vải nhỏ xinh kèm băng vệ sinh, trao tận tay mỗi bạn nữ tham gia lớp học.',outline:['Túi vải rút dây 10 × 17,5 cm','Băng vệ sinh siêu mỏng có cánh','Thẻ hướng dẫn 5 bước thay băng']}
+];
+const lessons=[
+  ['Cơ thể mình đang lớn lên','Những thay đổi bình thường ở tuổi dậy thì'],
+  ['Kinh nguyệt là gì?','Vì sao có kinh và máu kinh đến từ đâu'],
+  ['Chu kỳ kinh nguyệt','Các giai đoạn: hành kinh, nang trứng, rụng trứng, hoàng thể'],
+  ['Băng vệ sinh và cách dùng','Chọn loại phù hợp, thay và bỏ đúng cách'],
+  ['Chăm sóc bản thân','Vệ sinh, ăn uống, vận động và xử lý đau bụng kinh'],
+  ['Tự tin và tôn trọng','Cảm xúc tuổi dậy thì, khi bị trêu và nơi tìm hỗ trợ']
+];
+const posts=[
+  {t:'Kỳ kinh đầu tiên: 5 điều bạn nên biết',c:'Kinh nguyệt',img:'pipi-wonder',bg:'var(--blush-soft)',m:4,s:'Lần đầu có kinh có thể làm bạn bối rối. Đây là những điều giúp bạn bình tĩnh hơn.',b:`<p>Kỳ kinh đầu tiên thường đến trong khoảng 10–15 tuổi. Đây là dấu hiệu cơ thể bạn đang phát triển bình thường.</p><ul><li><b>Lượng máu thường ít.</b> Nhiều bạn chỉ thấy vài vệt nâu hoặc đỏ nhạt ở quần lót.</li><li><b>Chu kỳ chưa đều là bình thường.</b> Trong 1–2 năm đầu, kỳ kinh có thể đến sớm hoặc muộn.</li><li><b>Chuẩn bị sẵn một túi nhỏ</b> gồm băng vệ sinh, quần lót dự phòng và khăn giấy.</li><li><b>Thay băng khoảng mỗi 4 giờ</b> hoặc sớm hơn nếu thấy cần.</li><li><b>Hãy nói với người bạn tin cậy</b> như mẹ, chị, cô giáo hoặc nhân viên y tế trường.</li></ul>`},
+  {t:'Chu kỳ kinh nguyệt gồm những giai đoạn nào?',c:'Kinh nguyệt',img:'pipi-teach',bg:'var(--gold-soft)',m:5,s:'Hiểu 4 giai đoạn của chu kỳ giúp bạn biết cơ thể mình đang thay đổi ra sao.',b:`<p>Một chu kỳ được tính từ ngày đầu tiên có kinh đến ngày đầu tiên của kỳ kinh tiếp theo. Ở tuổi dậy thì, chu kỳ thường dài khoảng 21–45 ngày.</p><ul><li><b>Hành kinh:</b> lớp niêm mạc tử cung bong ra cùng với máu, kéo dài khoảng 2–7 ngày.</li><li><b>Giai đoạn nang trứng:</b> cơ thể chuẩn bị một trứng mới và lớp niêm mạc dày lên trở lại.</li><li><b>Rụng trứng:</b> trứng được phóng ra khỏi buồng trứng, thường vào khoảng giữa chu kỳ.</li><li><b>Giai đoạn hoàng thể:</b> nếu trứng không được thụ tinh, nội tiết thay đổi và kỳ kinh mới bắt đầu.</li></ul><p>Bạn có thể đánh dấu ngày có kinh trên lịch để dần quen với chu kỳ của mình.</p>`},
+  {t:'Cơ thể thay đổi thế nào ở tuổi dậy thì?',c:'Tuổi dậy thì',img:'pipi-calm',bg:'var(--mint-soft)',m:4,s:'Ngực phát triển, cao nhanh, mọc lông… tất cả đều là chuyện bình thường.',b:`<p>Tuổi dậy thì ở bạn nữ thường bắt đầu trong khoảng 8–13 tuổi. Mỗi người có tốc độ riêng, nên đừng so sánh mình với bạn khác nhé.</p><ul><li>Ngực bắt đầu phát triển, thường là thay đổi đầu tiên.</li><li>Cao nhanh hơn, hông rộng hơn.</li><li>Mọc lông ở nách và vùng kín.</li><li>Da có thể nhờn hơn và nổi mụn.</li><li>Cảm xúc thay đổi nhanh hơn, dễ vui dễ buồn.</li><li>Vài năm sau khi ngực phát triển, kỳ kinh đầu tiên sẽ đến.</li></ul>`},
+  {t:'Tự tin ở trường trong những ngày “đèn đỏ”',c:'Chăm sóc bản thân',img:'pipi-zen',bg:'var(--blush-soft)',m:3,s:'Vài mẹo nhỏ để bạn vẫn học, chơi và vận động thoải mái khi đến kỳ.',b:`<ul><li>Luôn để một túi nhỏ đựng băng vệ sinh và quần lót dự phòng trong cặp.</li><li>Chọn băng có cánh hoặc loại dài hơn cho ngày ra nhiều.</li><li>Lỡ bị dính ra quần? Buộc áo khoác ngang hông và xin phép lên phòng y tế, đây là chuyện rất nhiều bạn từng gặp.</li><li>Uống đủ nước và vận động nhẹ nhàng có thể giúp bạn dễ chịu hơn.</li><li>Đau nhiều đến mức không học được thì hãy báo cô giáo hoặc nhân viên y tế.</li></ul>`},
+  {t:'Con trai cũng nên hiểu về kinh nguyệt',c:'Bình đẳng giới',img:'pipi-paint',bg:'var(--gold-soft)',m:3,s:'Khi bạn nam hiểu đúng, lớp học sẽ bớt trêu chọc và mọi người tôn trọng nhau hơn.',b:`<p>Kinh nguyệt là chuyện sinh học bình thường của khoảng một nửa dân số. Hiểu về nó không làm ai “kỳ cục” cả.</p><ul><li>Biết về kinh nguyệt giúp bạn nam tôn trọng chị em, bạn bè và sau này là người thân của mình.</li><li>Không đùa cợt khi thấy bạn nữ mang băng vệ sinh hay xin phép ra ngoài.</li><li>Nếu thấy bạn bị dính ra quần, hãy kín đáo nhắc bạn hoặc báo cô giáo.</li></ul><p>Một lớp học tôn trọng nhau là nơi ai cũng thấy an toàn để học tập.</p>`},
+  {t:'Đau bụng kinh: khi nào là bình thường?',c:'Kinh nguyệt',img:'pipi-cloud',bg:'var(--mint-soft)',m:4,s:'Đau nhẹ thì có thể tự chăm sóc, nhưng có những dấu hiệu bạn nên báo người lớn.',b:`<p>Nhiều bạn thấy đau âm ỉ ở bụng dưới trong 1–2 ngày đầu. Đây là điều khá phổ biến.</p><p><b>Bạn có thể thử:</b></p><ul><li>Chườm ấm bụng dưới.</li><li>Nghỉ ngơi, vận động nhẹ hoặc đi bộ.</li><li>Uống đủ nước, ăn uống đầy đủ.</li></ul><p><b>Hãy nói với người lớn và đi khám nếu:</b></p><ul><li>Đau dữ dội đến mức không đi học được.</li><li>Kỳ kinh kéo dài hơn 7 ngày.</li><li>Phải thay băng mỗi 1–2 giờ vì ra quá nhiều.</li><li>Choáng váng, mệt lả hoặc sốt.</li></ul>`}
+];
+let threads=[
+  {id:1,c:'Kinh nguyệt',nick:'Mây Hồng',col:'#E999A7',t:'Mình 12 tuổi mà chưa có kinh, vậy có sao không ạ?',time:'2 giờ trước',likes:14,ans:[{e:true,n:'BS. Sản phụ khoa',x:'Không sao đâu bạn nhé. Kỳ kinh đầu thường đến trong khoảng 10–15 tuổi, mỗi người một khác. Nếu đến 15 tuổi vẫn chưa có kinh, bạn nên cùng bố mẹ đi khám để yên tâm.'}]},
+  {id:2,c:'Cảm xúc',nick:'Ẩn danh',col:'#970A1D',t:'Bạn nam trong lớp hay trêu khi thấy mình mang băng vệ sinh, mình nên làm gì?',time:'5 giờ trước',likes:22,ans:[{e:true,n:'Chuyên gia tâm lý',x:'Bạn không làm gì sai cả. Hãy nói rõ “Mình không thích bị trêu như vậy” và kể với cô chủ nhiệm. Thầy cô có trách nhiệm giúp lớp học trở thành nơi an toàn cho bạn.'},{e:false,n:'Nắng Mai',x:'Mình cũng từng bị vậy, kể với cô xong là các bạn ấy thôi luôn. Cố lên nha!'}]},
+  {id:3,c:'Tuổi dậy thì',nick:'Bánh Bao',col:'#F0BF49',t:'Dạo này mình hay nổi mụn và dễ cáu, có phải do dậy thì không?',time:'Hôm qua',likes:9,ans:[{e:true,n:'Giáo viên Sinh học',x:'Đúng rồi, nội tiết thay đổi ở tuổi dậy thì có thể làm da nhờn hơn và cảm xúc lên xuống. Rửa mặt nhẹ nhàng 2 lần mỗi ngày, ngủ đủ giấc và chia sẻ với người bạn tin cậy sẽ giúp bạn dễ chịu hơn.'}]},
+  {id:4,c:'Bình đẳng giới',nick:'Gấu Trúc',col:'#5FB894',t:'Mình là con trai, mình có nên đọc về kinh nguyệt không?',time:'2 ngày trước',likes:31,ans:[{e:false,n:'PiPi',x:'Có chứ! Hiểu về kinh nguyệt giúp bạn tôn trọng bạn bè và người thân. Ghé mục Blog đọc bài “Con trai cũng nên hiểu về kinh nguyệt” nhé.'}]}
+];
+const mfData=[
+  {q:'Đang có kinh thì không được tắm gội.',a:'myth',e:'Tắm bằng nước ấm giúp bạn sạch sẽ và dễ chịu hơn. Bạn hoàn toàn có thể tắm gội bình thường.'},
+  {q:'Máu kinh là máu bẩn.',a:'myth',e:'Máu kinh gồm máu và lớp niêm mạc tử cung bong ra. Đây là quá trình tự nhiên, không phải “máu bẩn”.'},
+  {q:'Trong 1–2 năm đầu, chu kỳ kinh nguyệt có thể chưa đều.',a:'fact',e:'Cơ thể cần thời gian để ổn định nội tiết, nên chu kỳ lúc đầu có thể đến sớm hoặc muộn.'},
+  {q:'Nên thay băng vệ sinh khoảng mỗi 4 giờ, kể cả khi chưa đầy.',a:'fact',e:'Thay băng thường xuyên giúp giữ vệ sinh và tránh mùi khó chịu.'},
+  {q:'Đến kỳ thì không được vận động hay chơi thể thao.',a:'myth',e:'Vận động nhẹ nhàng còn có thể giúp giảm đau bụng kinh. Hãy nghe cơ thể mình và nghỉ khi thấy mệt.'},
+  {q:'Con trai không cần biết gì về kinh nguyệt.',a:'myth',e:'Khi bạn nam hiểu đúng, lớp học sẽ bớt trêu chọc và mọi người tôn trọng nhau hơn.'},
+  {q:'Đau bụng nhẹ trong 1–2 ngày đầu kỳ kinh là khá phổ biến.',a:'fact',e:'Đau nhẹ là thường gặp. Nếu đau dữ dội đến mức không đi học được, hãy báo người lớn và đi khám.'},
+  {q:'Ăn đồ lạnh khi đến kỳ sẽ làm “tắc kinh”.',a:'myth',e:'Không có bằng chứng đồ lạnh làm tắc kinh. Bạn chỉ cần ăn uống đủ chất và uống đủ nước.'},
+  {q:'Có kinh lần đầu là dấu hiệu cơ thể đang phát triển bình thường.',a:'fact',e:'Kỳ kinh đầu là một cột mốc tự nhiên của tuổi dậy thì, rất đáng tự hào!'},
+  {q:'Băng vệ sinh đã dùng có thể vứt vào bồn cầu.',a:'myth',e:'Hãy gói băng đã dùng vào giấy hoặc vỏ băng mới rồi bỏ vào thùng rác để tránh tắc bồn cầu.'}
+];
+const quizData=[
+  {q:'Kinh nguyệt là gì?',o:['Máu bẩn tích tụ trong cơ thể','Lớp niêm mạc tử cung bong ra cùng máu','Dấu hiệu của bệnh','Chỉ xảy ra khi bị ốm'],a:1,e:'Mỗi chu kỳ, niêm mạc tử cung dày lên rồi bong ra cùng máu nếu không có thai.'},
+  {q:'Một chu kỳ kinh nguyệt được tính từ khi nào?',o:['Ngày cuối của kỳ kinh','Ngày đầu tiên có kinh','Ngày rụng trứng','Ngày đầu tháng dương lịch'],a:1,e:'Chu kỳ tính từ ngày đầu có kinh đến ngày đầu của kỳ kinh tiếp theo.'},
+  {q:'Nên thay băng vệ sinh bao lâu một lần?',o:['Một lần mỗi ngày','Khoảng mỗi 4 giờ hoặc sớm hơn','Chỉ khi băng đầy hẳn','Một lần mỗi kỳ'],a:1,e:'Thay khoảng mỗi 4 giờ giúp sạch sẽ và thoải mái.'},
+  {q:'Đâu thường là thay đổi đầu tiên ở tuổi dậy thì của bạn nữ?',o:['Giọng trầm hơn','Ngực bắt đầu phát triển','Mọc râu','Ngừng cao lên'],a:1,e:'Ngực phát triển thường là dấu hiệu đầu tiên, vài năm sau mới có kinh.'},
+  {q:'Khi đau bụng kinh nhẹ, bạn có thể làm gì?',o:['Nhịn ăn cả ngày','Chườm ấm và nghỉ ngơi','Uống nhiều nước đá','Chịu đựng, không nói với ai'],a:1,e:'Chườm ấm, nghỉ ngơi và vận động nhẹ thường giúp dễ chịu hơn.'},
+  {q:'Khi nào nên nói với người lớn và đi khám?',o:['Kỳ kinh kéo dài 4 ngày','Đau dữ dội hoặc kinh kéo dài hơn 7 ngày','Thấy hơi mệt một chút','Chu kỳ năm đầu chưa đều'],a:1,e:'Đau dữ dội, ra quá nhiều hoặc kéo dài hơn 7 ngày là dấu hiệu nên đi khám.'},
+  {q:'Nếu bị trêu chọc vì đến kỳ, bạn nên làm gì?',o:['Giấu đi và nghỉ học','Nói với thầy cô hoặc người lớn tin cậy','Trêu lại bạn ấy','Không bao giờ mang băng đến trường'],a:1,e:'Bạn không sai. Người lớn tin cậy sẽ giúp bạn giải quyết.'},
+  {q:'Băng vệ sinh đã dùng nên xử lý thế nào?',o:['Vứt vào bồn cầu','Gói lại và bỏ vào thùng rác','Để trong cặp sách','Vứt ra sân trường'],a:1,e:'Gói kín bằng giấy hoặc vỏ băng mới rồi bỏ vào thùng rác.'}
+];
+const bagItems=[
+  {e:'🩹',n:'Băng vệ sinh',ok:true},{e:'🩲',n:'Quần lót dự phòng',ok:true},{e:'🧻',n:'Khăn giấy / khăn ướt',ok:true},
+  {e:'👝',n:'Túi nhỏ kín để gói băng đã dùng',ok:true},{e:'🧴',n:'Nước rửa tay khô',ok:true},
+  {e:'🎮',n:'Máy chơi game',ok:false},{e:'💄',n:'Son bóng',ok:false},{e:'📚',n:'Truyện tranh',ok:false},{e:'🍬',n:'Kẹo cao su',ok:false}
+];
+
+/* ---------- routing ---------- */
+const routes=['home','about','toolkits','community','blog','forum','games'];
+function route(){
+  let r=(location.hash||'#home').slice(1); if(!routes.includes(r)) r='home';
+  document.querySelectorAll('section.page').forEach(s=>s.classList.toggle('show',s.id===r));
+  document.querySelectorAll('#menu a').forEach(a=>a.classList.toggle('active',a.dataset.r===r));
+  $('#menu').classList.remove('open'); window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+
+/* ---------- render ---------- */
+function sponsorHTML(){return sponsors.map(s=>`<div class="sponsor"><b>${esc(s.n)}</b><span>${esc(s.d)}</span></div>`).join('')}
+$('#sponsor-list').innerHTML=sponsorHTML(); $('#sponsor-list-2').innerHTML=sponsorHTML();
+$('#team').innerHTML=team.map(m=>`<div class="card member"><div class="avatar">${m[0]}</div><b>${m[1]}</b><span>${m[2]}</span></div>`).join('');
+
+function postCard(p,i){return `<div class="card post" tabindex="0" onclick="openPost(${i})" onkeydown="if(event.key==='Enter')openPost(${i})"><div class="thumb" style="background:${p.bg}"><img src="assets/${p.img}.png" alt=""></div><span class="chip">${esc(p.c)}</span><h3 style="margin-top:10px">${esc(p.t)}</h3><p>${esc(p.s)}</p><div class="foot"><span>${p.m} phút đọc</span><span class="chip mint">✔ Chuyên gia duyệt</span></div></div>`}
+$('#home-posts').innerHTML=posts.slice(0,3).map(postCard).join('');
+function filterBar(el,cats,cb){
+  el.innerHTML=cats.map((c,i)=>`<button class="${i?'':'on'}" data-v="${esc(c[0])}">${esc(c[1])}</button>`).join('');
+  el.onclick=e=>{const b=e.target.closest('button'); if(!b) return; el.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); cb(b.dataset.v)};
+}
+function renderPosts(cat){$('#posts').innerHTML=posts.map((p,i)=>(!cat||p.c===cat)?postCard(p,i):'').join('')}
+filterBar($('#blog-filters'),[['','Tất cả'],['Kinh nguyệt','Kinh nguyệt'],['Tuổi dậy thì','Tuổi dậy thì'],['Chăm sóc bản thân','Chăm sóc bản thân'],['Bình đẳng giới','Bình đẳng giới']],renderPosts);
+renderPosts('');
+function openPost(i){const p=posts[i]; openModal(`<span class="chip">${esc(p.c)}</span><h2 style="margin-top:10px">${esc(p.t)}</h2><div style="display:flex;gap:16px;align-items:center;margin-bottom:12px"><img src="assets/${p.img}.png" alt="" style="height:90px;width:auto"><p style="margin:0;color:var(--ink-soft)">${esc(p.s)}</p></div>${p.b}<p style="font-size:13px;color:var(--ink-soft);margin-top:16px">Bài viết mang tính giáo dục, không thay thế lời khuyên của bác sĩ.</p>`)}
+
+function renderKits(a){$('#kits').innerHTML=kits.map((k,i)=>(!a||k.a===a)?`<div class="card kit"><div class="cover" style="background:${k.bg}"><img src="assets/${k.img}.png" alt=""></div><div class="meta">${k.tags.map((t,j)=>`<span class="chip ${j?'gold':''}">${esc(t)}</span>`).join('')}</div><h3>${esc(k.t)}</h3><p>${esc(k.d)}</p><button class="btn btn-ghost btn-sm" onclick="openKit(${i})">Xem trước</button></div>`:'').join('')}
+filterBar($('#kit-filters'),[['','Tất cả'],['hs','Cho học sinh'],['gv','Cho thầy cô và nhà trường'],['ph','Cho phụ huynh']],renderKits);
+renderKits('');
+function openKit(i){const k=kits[i]; openModal(`<div style="display:flex;gap:16px;align-items:center"><img src="assets/${k.img}.png" alt="" style="height:100px;width:auto"><div><h2 style="margin:0">${esc(k.t)}</h2><p style="margin:4px 0 0;color:var(--ink-soft)">${esc(k.d)}</p></div></div><h4 class="mt">Nội dung chính</h4><ul>${k.outline.map(o=>`<li>${esc(o)}</li>`).join('')}</ul><p style="font-size:13px;color:var(--ink-soft)">Bản đầy đủ sẽ được gửi cho nhà trường khi bàn giao dự án.</p>`)}
+$('#lessons').innerHTML=lessons.map((l,i)=>`<div class="lesson"><div class="num">${i+1}</div><div><b>${esc(l[0])}</b><br><small>${esc(l[1])}</small></div><button class="btn btn-ghost btn-sm" onclick="askPiPi('Kể mình nghe ngắn gọn về bài ${i+1}: ${esc(l[0])}')">Hỏi PiPi</button></div>`).join('');
+
+function threadHTML(t){return `<div class="thread"><div class="top"><div class="nick" style="background:${t.col}">${esc(t.nick[0])}</div><b>${esc(t.nick)}</b><span style="color:var(--ink-soft);font-size:13px">· ${esc(t.time)}</span><span class="chip" style="margin-left:auto">${esc(t.c)}</span></div><h4>${esc(t.t)}</h4>${t.ans.map(a=>`<div class="answer ${a.e?'':'peer'}"><b>${a.e?'👑 ':''}${esc(a.n)}</b><br>${esc(a.x)}</div>`).join('')}<div class="acts"><button onclick="likeT(${t.id},this)">♡ ${t.likes} thương</button><span>💬 ${t.ans.length} trả lời</span><button onclick="reportT(this)">⚑ Báo cáo</button></div></div>`}
+let forumCat='';
+function renderThreads(){$('#threads').innerHTML=threads.filter(t=>!forumCat||t.c===forumCat).map(threadHTML).join('')||'<div class="card center"><img src="assets/pipi-sleep.png" alt="" style="height:120px;width:auto;margin:0 auto"><p>Chưa có câu hỏi nào ở chủ đề này. Bạn hỏi đầu tiên nhé!</p></div>'}
+filterBar($('#forum-filters'),[['','Tất cả'],['Kinh nguyệt','Kinh nguyệt'],['Tuổi dậy thì','Tuổi dậy thì'],['Cảm xúc','Cảm xúc'],['Bình đẳng giới','Bình đẳng giới']],v=>{forumCat=v;renderThreads()});
+renderThreads();
+function likeT(id,btn){const t=threads.find(x=>x.id===id); t.likes++; btn.textContent='♥ '+t.likes+' thương'; btn.style.color='var(--ruby)'}
+function reportT(btn){btn.textContent='✓ Đã báo cáo'; btn.disabled=true}
+$('#ask-form').addEventListener('submit',e=>{
+  e.preventDefault(); const topic=$('#ask-topic').value, q=$('#ask-q').value.trim(), err=$('#ask-err');
+  if(!topic){err.textContent='Chọn một chủ đề trước nhé.';return}
+  if(q.length<10){err.textContent='Viết câu hỏi dài hơn một chút để mọi người hiểu ý bạn nhé.';return}
+  if(/\b0\d{9}\b|@\w+\./.test(q)){err.textContent='Đừng chia sẻ số điện thoại hay email trên diễn đàn nhé.';return}
+  err.textContent='';
+  threads.unshift({id:Date.now(),c:topic,nick:$('#ask-anon').checked?'Ẩn danh':'Bạn mới',col:'#E999A7',t:q,time:'Vừa xong',likes:0,ans:[{e:false,n:'PiPi',x:'Cảm ơn bạn đã hỏi! Câu hỏi đang chờ chuyên gia trả lời. Trong lúc chờ, bạn có thể hỏi PiPi ở góc phải màn hình nhé.'}]});
+  forumCat=''; $('#forum-filters').querySelectorAll('button').forEach((b,i)=>b.classList.toggle('on',i===0));
+  renderThreads(); e.target.reset(); $('#ask-anon').checked=true;
+});
+['ask-topic','ask-q'].forEach(id=>$('#'+id).addEventListener('input',()=>$('#ask-err').textContent=''));
+$('#amb-form').addEventListener('submit',e=>{
+  e.preventDefault(); const err=$('#amb-err');
+  if(!$('#amb-nick').value.trim()){err.textContent='Nhập một biệt danh nhé.';return}
+  if(!$('#amb-role').value){err.textContent='Cho chúng mình biết bạn là ai nhé.';return}
+  err.textContent=''; e.target.outerHTML='<div class="answer" style="text-align:center"><img src="assets/pipi-drum.png" alt="" style="height:110px;width:auto;margin:0 auto 6px"><b>Cảm ơn bạn!</b><br>Đây là bản demo nên thông tin chưa được gửi đi.</div>';
+});
+['amb-nick','amb-role'].forEach(id=>$('#'+id).addEventListener('input',()=>$('#amb-err').textContent=''));
+
+/* ---------- modal ---------- */
+function openModal(html){$('#modal-body').innerHTML=html; $('#modal').classList.add('show')}
+function closeModal(){$('#modal').classList.remove('show')}
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal') closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeChat()}});
+
+/* ---------- games ---------- */
+let points=0; function addPts(n){points+=n; $('#pts').textContent=points}
+let game='mf';
+$('#game-tabs').onclick=e=>{const b=e.target.closest('button'); if(!b) return; $('#game-tabs').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); game=b.dataset.g; startGame()};
+function winScreen(score,total,again){
+  const great=score>=Math.ceil(total*.7);
+  return `<div class="win"><img src="assets/${great?'pipi-drum':'pipi-hi'}.png" alt=""><h2>${great?'Tuyệt vời!':'Cố lên nhé!'}</h2><p class="lead" style="margin:0 auto 16px">Bạn đúng ${score}/${total} câu${great?' và nhận huy hiệu “Kiêu hãnh” 👑':'. Chơi lại để nhận huy hiệu nhé!'}</p><button class="btn btn-primary" onclick="${again}">Chơi lại</button></div>`;
+}
+let mfI=0,mfScore=0,mfOrder=[];
+function startMF(){mfOrder=[...mfData].sort(()=>Math.random()-.5);mfI=0;mfScore=0;renderMF()}
+function renderMF(){
+  if(mfI>=mfOrder.length){$('#game-area').innerHTML=winScreen(mfScore,mfOrder.length,'startMF()');return}
+  const it=mfOrder[mfI];
+  $('#game-area').innerHTML=`<div style="max-width:560px;margin:0 auto"><div style="display:flex;justify-content:space-between;font-weight:700"><span>Câu ${mfI+1}/${mfOrder.length}</span><span>Đúng: ${mfScore}</span></div><div class="progress"><i style="width:${mfI/mfOrder.length*100}%"></i></div></div><div class="mf-card"><img src="assets/pipi-search.png" alt="" style="height:90px;width:auto;margin:0 auto 10px"><div class="q">“${esc(it.q)}”</div><div class="mf-btns"><button class="b-myth" onclick="ansMF('myth')">Myth</button><button class="b-fact" onclick="ansMF('fact')">Fact</button></div><div class="feedback" id="mf-fb"></div></div>`;
+}
+function ansMF(v){
+  const it=mfOrder[mfI], ok=v===it.a, fb=$('#mf-fb'); if(fb.dataset.done) return; fb.dataset.done=1;
+  if(ok){mfScore++;addPts(10)}
+  fb.className='feedback '+(ok?'ok':'no');
+  fb.innerHTML=`<b>${ok?'Chính xác! +10 điểm':'Chưa đúng rồi'}</b> · Đây là <b>${it.a==='myth'?'Myth (hiểu lầm)':'Fact (sự thật)'}</b>.<br>${esc(it.e)}<div style="text-align:right;margin-top:10px"><button class="btn btn-primary btn-sm" onclick="mfI++;renderMF()">Câu tiếp theo</button></div>`;
+  document.querySelectorAll('.mf-btns button').forEach(b=>b.disabled=true);
+}
+let qI=0,qScore=0;
+function startQuiz(){qI=0;qScore=0;renderQuiz()}
+function renderQuiz(){
+  if(qI>=quizData.length){$('#game-area').innerHTML=winScreen(qScore,quizData.length,'startQuiz()');return}
+  const it=quizData[qI];
+  $('#game-area').innerHTML=`<div style="max-width:620px;margin:0 auto"><div style="display:flex;justify-content:space-between;font-weight:700"><span>Câu ${qI+1}/${quizData.length}</span><span>Đúng: ${qScore}</span></div><div class="progress"><i style="width:${qI/quizData.length*100}%"></i></div><h3 style="color:var(--ink)">${esc(it.q)}</h3><div id="qopts">${it.o.map((o,i)=>`<button class="quiz-opt" onclick="ansQuiz(${i},this)">${'ABCD'[i]}. ${esc(o)}</button>`).join('')}</div><div class="feedback" id="q-fb"></div></div>`;
+}
+function ansQuiz(i,btn){
+  const it=quizData[qI], fb=$('#q-fb'); if(fb.dataset.done) return; fb.dataset.done=1;
+  const ok=i===it.a; if(ok){qScore++;addPts(10)}
+  const opts=document.querySelectorAll('#qopts .quiz-opt'); opts[it.a].classList.add('right'); if(!ok) btn.classList.add('wrong');
+  fb.className='feedback '+(ok?'ok':'no');
+  fb.innerHTML=`<b>${ok?'Chính xác! +10 điểm':'Chưa đúng rồi'}</b><br>${esc(it.e)}<div style="text-align:right;margin-top:10px"><button class="btn btn-primary btn-sm" onclick="qI++;renderQuiz()">${qI+1<quizData.length?'Câu tiếp theo':'Xem kết quả'}</button></div>`;
+}
+let bagSel=new Set(), bagDone=false;
+function startBag(){bagSel=new Set();bagDone=false;renderBag()}
+function renderBag(){
+  $('#game-area').innerHTML=`<div class="bag"><img src="assets/pipi-happy.png" alt="" style="height:100px;width:auto"><div><h3 style="margin:0">Chuẩn bị túi kỳ đầu</h3><p style="margin:0;color:var(--ink-soft)">Chọn những món nên có trong túi nhỏ mang đến trường, rồi bấm “Kiểm tra túi”.</p></div></div><div class="items" id="bag-items">${bagItems.map((it,i)=>`<button class="item ${bagSel.has(i)?'sel':''}" data-i="${i}" aria-pressed="${bagSel.has(i)}"><span class="e">${it.e}</span>${esc(it.n)}</button>`).join('')}</div><div class="err" id="bag-err" style="margin-top:12px"></div><div style="display:flex;gap:10px;margin-top:8px"><button class="btn btn-primary" id="bag-check">Kiểm tra túi</button><button class="btn btn-ghost" onclick="startBag()">Làm lại</button></div><div class="feedback" id="bag-fb"></div>`;
+  $('#bag-items').onclick=e=>{const b=e.target.closest('.item'); if(!b||bagDone) return; const i=+b.dataset.i; bagSel.has(i)?bagSel.delete(i):bagSel.add(i); b.classList.toggle('sel'); b.setAttribute('aria-pressed',bagSel.has(i)); $('#bag-err').textContent=''};
+  $('#bag-check').onclick=checkBag;
+}
+function checkBag(){
+  if(bagDone) return;
+  if(!bagSel.size){$('#bag-err').textContent='Chọn ít nhất một món trước khi kiểm tra nhé.';return}
+  bagDone=true;
+  let right=0,wrong=0; const need=bagItems.filter(x=>x.ok).length;
+  document.querySelectorAll('#bag-items .item').forEach(b=>{const it=bagItems[+b.dataset.i]; b.classList.remove('sel'); if(it.ok) b.classList.add('good'); else if(bagSel.has(+b.dataset.i)) b.classList.add('bad')});
+  bagSel.forEach(i=>bagItems[i].ok?right++:wrong++);
+  const perfect=right===need&&!wrong; const pts=right*5+(perfect?15:0); addPts(pts);
+  const fb=$('#bag-fb'); fb.className='feedback '+(perfect?'ok':'no');
+  fb.innerHTML=perfect?`<b>Túi hoàn hảo! +${pts} điểm</b><br>Bạn đã sẵn sàng cho kỳ kinh đầu tiên ở trường rồi đó.`:`<b>Bạn chọn đúng ${right}/${need} món cần thiết (+${pts} điểm)</b><br>Những ô viền xanh là món nên có. Máy chơi game, son, truyện hay kẹo không sai, nhưng không cần cho “túi kỳ đầu” đâu nhé.`;
+}
+function startGame(){game==='mf'?startMF():game==='quiz'?startQuiz():startBag()}
+startGame();
+
+/* ---------- PiPi chatbot ---------- */
+const PIPI_RULES=`Bạn là PiPi – mascot của dự án P-Proud, một giọt máu màu hồng đội vương miện vàng có chữ "PP". Khẩu hiệu: "Kiêu hãnh đón 'kỳ', tự tin con gái" (Be Proud of your Period).
+Người đang trò chuyện với bạn thường là nữ sinh lớp 6–7 (11–13 tuổi) ở Việt Nam, đôi khi là bạn nam, thầy cô hoặc phụ huynh.
+
+CÁCH NÓI CHUYỆN
+- Luôn trả lời 100% bằng tiếng Việt. Xưng "PiPi", gọi người dùng là "bạn".
+- Giọng dễ thương, ấm áp, vui vẻ như một người chị, có thể dùng tối đa 1–2 emoji nhẹ nhàng (🌸💕👑✨).
+- Ngắn gọn: tối đa khoảng 120 chữ, câu ngắn, từ ngữ dễ hiểu cho học sinh 11 tuổi. Có thể dùng gạch đầu dòng "- " khi liệt kê. Dùng **chữ đậm** cho ý chính.
+- Thông tin phải chính xác, phù hợp lứa tuổi, giải thích khoa học nhưng nhẹ nhàng, không gây sợ hãi.
+
+PHẠM VI
+Chỉ trả lời các chủ đề: kinh nguyệt và chu kỳ, tuổi dậy thì, vệ sinh và chăm sóc bản thân trong kỳ kinh, băng vệ sinh, đau bụng kinh, cảm xúc tuổi dậy thì, sự tự tin, tôn trọng và bình đẳng giới, cách xử lý khi bị trêu chọc, và thông tin về dự án/website P-Proud.
+Nếu câu hỏi nằm ngoài phạm vi (bài tập, game, chuyện khác…), từ chối thật dễ thương trong 1–2 câu và gợi ý một câu hỏi trong phạm vi.
+Với câu hỏi về quan hệ tình dục hoặc nội dung người lớn: không đi vào chi tiết, nhẹ nhàng khuyên bạn hỏi bố mẹ, thầy cô hoặc nhân viên y tế trường.
+
+AN TOÀN
+- Không chẩn đoán bệnh, không kê thuốc hay liều thuốc. Khi có dấu hiệu bất thường (đau dữ dội, kinh kéo dài hơn 7 ngày, ra quá nhiều phải thay băng mỗi 1–2 giờ, chóng mặt, sốt, 15 tuổi chưa có kinh) hãy khuyên bạn nói với bố mẹ/người lớn tin cậy, nhân viên y tế trường hoặc đi khám bác sĩ.
+- Không hỏi và không khuyến khích chia sẻ họ tên thật, trường, địa chỉ, số điện thoại, ảnh.
+- Nếu bạn kể bị xâm hại, bị bắt nạt nghiêm trọng, muốn tự làm đau bản thân hoặc đang gặp nguy hiểm: thể hiện sự quan tâm, nói rằng đó không phải lỗi của bạn, khuyên bạn nói ngay với người lớn tin cậy và gọi Tổng đài quốc gia bảo vệ trẻ em 111 (miễn phí, 24/7).
+
+THÔNG TIN DỰ ÁN P-PROUD (dùng khi được hỏi)
+- Dự án của 6 sinh viên UEH (Nhóm 1), kéo dài 23 tuần, dành cho 120 nữ sinh lớp 6–7 tại một trường THCS ở Quận 8, TP.HCM.
+- Gồm: website học tập (bài học, quiz, Myth hay Fact), 6 buổi học trực tiếp tại trường, bộ vật dụng vệ sinh cho mỗi học sinh, cẩm nang nữ sinh, sổ tay giáo viên, poster song ngữ, tủ băng vệ sinh và sách cho thư viện trường.
+- Website có các mục: Về chúng mình, Bộ công cụ, Cộng đồng, Blog, Diễn đàn (hỏi đáp ẩn danh, có chuyên gia trả lời), Góc trò chơi.
+- 6 bài học: (1) Cơ thể mình đang lớn lên, (2) Kinh nguyệt là gì?, (3) Chu kỳ kinh nguyệt, (4) Băng vệ sinh và cách dùng, (5) Chăm sóc bản thân, (6) Tự tin và tôn trọng.`;
+const suggestions=['Kinh nguyệt là gì vậy PiPi?','Lần đầu có kinh mình cần chuẩn bị gì?','Đau bụng kinh thì làm sao?','Bị bạn trêu thì mình nên làm gì?','P-Proud là dự án gì?'];
+let history=[], sampleFn=null, busy=false;
+let samplePromise=null;
+function getSample(){
+  if(!samplePromise){samplePromise=(window.claude&&window.claude.use)?window.claude.use('sample').catch(()=>null):Promise.resolve(null)}
+  return samplePromise;
+}
+function md(t){
+  let h=esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+  const lines=h.split(/\n/); let out='',inList=false;
+  for(const l of lines){
+    const m=l.match(/^\s*[-•*]\s+(.*)/);
+    if(m){if(!inList){out+='<ul>';inList=true} out+='<li>'+m[1]+'</li>'}
+    else{if(inList){out+='</ul>';inList=false} if(l.trim()) out+='<p>'+l+'</p>'}
+  }
+  if(inList) out+='</ul>'; return out;
+}
+function addMsg(who,html){const d=document.createElement('div'); d.className='msg '+who; d.innerHTML=html; $('#chat-body').appendChild(d); $('#chat-body').scrollTop=1e9; return d}
+function renderSuggest(){$('#suggest').innerHTML=suggestions.map(s=>`<button type="button">${esc(s)}</button>`).join('')}
+$('#suggest').onclick=e=>{const b=e.target.closest('button'); if(b) send(b.textContent)};
+let greeted=false;
+function openChat(){
+  $('#chat').classList.add('show'); $('#chat-fab').style.display='none';
+  if(!greeted){greeted=true; addMsg('bot',md('Chào bạn! PiPi đây 👑\nBạn có thắc mắc gì về **kinh nguyệt**, **tuổi dậy thì** hay chuyện **tự tin ở trường** không? Cứ hỏi PiPi nhé, không có câu hỏi nào là ngại cả!')); renderSuggest()}
+  setTimeout(()=>$('#chat-input').focus(),50);
+}
+function closeChat(){$('#chat').classList.remove('show'); $('#chat-fab').style.display=''}
+function askPiPi(q){openChat(); send(q)}
+$('#chat-form').addEventListener('submit',e=>{e.preventDefault(); const v=$('#chat-input').value.trim(); if(v) send(v)});
+async function send(text){
+  if(busy) return; busy=true; $('#suggest').innerHTML=''; $('#chat-input').value='';
+  addMsg('me',esc(text));
+  const bot=addMsg('bot','<span class="typing"><i></i><i></i><i></i></span>');
+  history.push({role:'user',content:text});
+  try{
+    const sample=await getSample();
+    if(!sample){bot.innerHTML=md('PiPi đang ngủ trưa một chút 😴 Trò chuyện với AI chỉ hoạt động khi mở website trên claude.ai. Trong lúc chờ, bạn ghé **Blog** hoặc **Góc trò chơi** nhé!'); history.pop(); return}
+    const recent=history.slice(-10);
+    const msgs=recent.map((m,i)=>i===0&&m.role==='user'?{role:'user',content:PIPI_RULES+'\n\n---\nTin nhắn của bạn nhỏ:\n'+m.content}:m);
+    if(msgs[0].role!=='user') msgs.unshift({role:'user',content:PIPI_RULES+'\n\n(Tiếp tục cuộc trò chuyện bên dưới.)'},{role:'assistant',content:'PiPi đã sẵn sàng!'});
+    let got=false;
+    const res=await sample(msgs,{modelTier:'quick',cache:false,onText:({text})=>{if(text){got=true;bot.innerHTML=md(text);$('#chat-body').scrollTop=1e9}}});
+    const answer=(res&&res.text)||'';
+    bot.innerHTML=md(answer||'PiPi chưa nghĩ ra câu trả lời, bạn hỏi lại theo cách khác nhé!');
+    history.push({role:'assistant',content:answer||'...'});
+  }catch(err){
+    history.pop();
+    const code=err&&err.code;
+    bot.innerHTML=md(code==='not_granted'?'PiPi cần bạn cho phép kết nối AI để trả lời. Bạn hỏi lại và bấm **Cho phép** nhé!':code==='rate_limited'?'Nhiều bạn đang hỏi PiPi quá, đợi PiPi một chút rồi hỏi lại nha 💕':'Ôi, PiPi bị vấp một chút. Bạn thử hỏi lại nhé!');
+  }finally{busy=false; $('#chat-body').scrollTop=1e9}
+}
+
+route();
+</script>
+</body>
+</html>

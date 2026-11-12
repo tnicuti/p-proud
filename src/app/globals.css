@@ -1,26 +1,197 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Design token P-Proud. Năm màu brand gốc (ruby, rose, blush, white, gold) không được đổi. */
+@theme {
+  --color-ruby: #970a1d;
+  --color-ruby-dark: #6e0715;
+  --color-rose: #e999a7;
+  --color-blush: #eab5c0;
+  --color-blush-soft: #fbe3e8;
+  --color-gold: #f0bf49;
+  --color-gold-soft: #fdf1d3;
+  --color-gold-ink: #5a3d00;
+  --color-mist: #fff6f7;
+  --color-white: #ffffff;
+  --color-ink: #3b1820;
+  --color-ink-soft: #7a5560;
+  --color-mint: #5fb894;
+  --color-mint-soft: #e3f4ec;
+  --color-mint-ink: #1e5b42;
+  --color-line: #f3d3da;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-display: var(--font-baloo), "Baloo 2", var(--font-nunito), sans-serif;
+  --font-body: var(--font-nunito), "Nunito", system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --radius-card: 20px;
+  --radius-game: 28px;
+  --radius-modal: 24px;
+  --radius-chat: 26px;
+
+  --shadow-card: 0 6px 24px rgba(151, 10, 29, 0.08);
+  --shadow-chat: 0 18px 48px rgba(151, 10, 29, 0.25);
+
+  /* Breakpoint theo prototype (dùng dạng max-*: ví dụ max-nav:hidden = dưới 1020px) */
+  --breakpoint-xs: 520px;
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 720px;
+  --breakpoint-hero: 820px;
+  --breakpoint-lg: 900px;
+  --breakpoint-nav: 1020px;
+
+  --animate-bob: bob 3.5s ease-in-out infinite;
+  --animate-bob-fast: bob 3s ease-in-out infinite;
+  --animate-page: page-in 0.35s ease;
+  --animate-blink: blink 1s infinite;
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background: var(--color-mist);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    line-height: 1.2;
+    margin: 0 0 0.5em;
+    color: var(--color-ruby);
+  }
+  h1 {
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 800;
+  }
+  h2 {
+    font-size: clamp(28px, 3.6vw, 40px);
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  h4 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  p {
+    margin: 0 0 1em;
+  }
+  ul {
+    list-style: disc;
+  }
+  ol {
+    list-style: decimal;
+  }
+  a {
+    color: var(--color-ruby);
+  }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: default;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ruby);
+    outline-offset: 2px;
+  }
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: 15px;
+    border: 2px solid var(--color-line);
+    border-radius: 14px;
+    padding: 10px 14px;
+    width: 100%;
+    background: #fff;
+    color: var(--color-ink);
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--color-rose);
+    box-shadow: 0 0 0 3px rgba(233, 153, 167, 0.35);
+  }
+  input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--color-ruby);
+  }
+  label {
+    font-weight: 700;
+    font-size: 14px;
+    display: block;
+    margin: 10px 0 6px;
+  }
+}
+
+/* Nội dung bài viết (HTML tĩnh do nhóm soạn) */
+.prose-post ul {
+  padding-left: 20px;
+  margin: 0 0 1em;
+}
+.prose-post li {
+  margin-bottom: 4px;
+}
+
+/* Tin nhắn PiPi render markdown nhẹ */
+.chat-md p {
+  margin: 0 0 6px;
+}
+.chat-md p:last-child {
+  margin: 0;
+}
+.chat-md ul {
+  margin: 4px 0;
+  padding-left: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

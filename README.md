@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# P-Proud – Kiêu hãnh đón “kỳ”, tự tin con gái
 
-## Getting Started
+Website giáo dục sức khỏe kinh nguyệt cho nữ sinh lớp 6–7. Next.js 16 (App Router) + TypeScript + Tailwind CSS 4.
 
-First, run the development server:
+## Chạy trên máy
+
+Cần Node.js 20 trở lên.
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Lệnh | Việc làm |
+|---|---|
+| `npm run dev` | Chạy thử khi đang sửa |
+| `npm run build` | Build bản chính thức |
+| `npm run typecheck` | Kiểm tra kiểu TypeScript |
+| `npm run lint` | ESLint |
+| `npm test` | Unit test (Vitest) |
+| `npm run format` | Định dạng code (Prettier) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Sửa nội dung
 
-## Learn More
+Toàn bộ chữ nằm trong `src/content/`, không cần đụng vào giao diện:
 
-To learn more about Next.js, take a look at the following resources:
+| File | Nội dung |
+|---|---|
+| `site.ts` | Số liệu, đội ngũ, giai đoạn, nhà tài trợ, ba chữ P, hoạt động |
+| `toolkit.ts` | 6 tài liệu và 6 bài học |
+| `posts.ts` | Bài blog. Thêm bài: thêm một phần tử, `slug` không dấu, không trùng |
+| `forum.ts` | Chủ đề, nội quy, 4 câu hỏi mẫu |
+| `games.ts` | Câu Myth hay Fact, quiz, món trong Túi kỳ đầu, điểm thưởng |
+| `pipi.ts` | Lời chào, câu gợi ý, câu báo lỗi của PiPi, PIPI_RULES |
+| `pipiScript.ts` | **Kịch bản trả lời của PiPi**: từ khóa (viết không dấu) và câu trả lời |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Thay ảnh mascot
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Chép đè file cùng tên vào `public/mascot/` (PNG nền trong suốt), rồi build lại. Kích thước được đọc tự động, không phải sửa code.
 
-## Deploy on Vercel
+## Chatbot PiPi
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Hiện PiPi trả lời theo kịch bản trong `src/content/pipiScript.ts`, không gọi AI, không tốn phí và không lưu nội dung trò chuyện.
+Các mục an toàn (xâm hại, tự làm đau, thuốc, dấu hiệu bất thường) đứng đầu danh sách nên luôn được ưu tiên.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Khi muốn chuyển sang AI thật: viết thêm một provider trong `src/lib/pipi/` theo interface `ChatProvider`
+(system prompt đã có sẵn là `PIPI_RULES` trong `src/content/pipi.ts`), rồi đổi `PIPI_PROVIDER`.
+
+## Deploy lên Vercel
+
+1. Đưa thư mục này lên một repository GitHub.
+2. Vào https://vercel.com/new, chọn repository vừa tạo, bấm **Import**. Vercel tự nhận ra Next.js.
+3. Mở **Environment Variables**, nhập các biến trong `.env.example` (ít nhất `NEXT_PUBLIC_SITE_URL`).
+4. Bấm **Deploy**. Vài phút sau website chạy ở địa chỉ dạng `https://ten-du-an.vercel.app`.
+5. Mỗi lần đẩy code mới lên GitHub, Vercel tự deploy lại.
+
+## Quyền riêng tư
+
+Người dùng chính là trẻ 11–13 tuổi: không tài khoản, không cookie theo dõi, không thu họ tên thật, trường, số điện thoại hay ảnh của học sinh.
+Chỉ thầy cô và phụ huynh mới thấy ô email/số điện thoại trong form Đại sứ. Xem thêm trang `/chinh-sach-rieng-tu`.
