@@ -2,6 +2,8 @@
 
 Website giáo dục sức khỏe kinh nguyệt cho nữ sinh lớp 6–7. Next.js 16 (App Router) + TypeScript + Tailwind CSS 4.
 
+Bản đang chạy: https://p-proud.vercel.app
+
 ## Chạy trên máy
 
 Cần Node.js 20 trở lên.
