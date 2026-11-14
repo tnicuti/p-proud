@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Baloo_2, Nunito } from "next/font/google";
+import { Agbalumo, Montserrat } from "next/font/google";
 import { ChatProvider } from "@/components/chat/ChatWidget";
 import { DemoBanner } from "@/components/layout/DemoBanner";
 import { Footer } from "@/components/layout/Footer";
@@ -8,17 +8,19 @@ import { shareImage } from "@/content/mascot";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const baloo = Baloo_2({
-  variable: "--font-baloo",
+// Font theo brand asset: Agbalumo cho tiêu đề lớn, Montserrat cho tiêu đề phụ, nút và nội dung.
+// Agbalumo chỉ có một độ đậm (400): không đặt font-weight khác cho nó.
+const agbalumo = Agbalumo({
+  variable: "--font-agbalumo",
   subsets: ["latin", "vietnamese"],
-  weight: ["500", "600", "700", "800"],
+  weight: "400",
   display: "swap",
 });
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -43,7 +45,7 @@ export const viewport: Viewport = { themeColor: "#970A1D" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="vi" className={`${baloo.variable} ${nunito.variable}`}>
+    <html lang="vi" className={`${agbalumo.variable} ${montserrat.variable}`}>
       <body>
         <a
           href="#noi-dung"

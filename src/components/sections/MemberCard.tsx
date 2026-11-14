@@ -19,7 +19,7 @@ export function MemberCard({ member }: { member: Member }) {
               className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.03]"
             />
           ) : (
-            <span aria-hidden="true" className="font-display text-4xl font-extrabold text-ruby">
+            <span aria-hidden="true" className="font-title text-4xl font-normal text-ruby">
               {member.initials}
             </span>
           )}
