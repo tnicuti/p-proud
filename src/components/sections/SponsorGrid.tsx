@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { buttonClass } from "@/components/ui/Button";
-import { Chip } from "@/components/ui/Chip";
 import { Wrap } from "@/components/ui/Layout";
 import { CONTACT_EMAIL } from "@/content/site";
 import { sponsors, sponsorSection, type Sponsor } from "@/content/sponsors";
@@ -21,13 +20,11 @@ function SponsorCell({ sponsor }: { sponsor: Sponsor }) {
     />
   ) : (
     <>
-      <b className="block font-display text-lg leading-tight text-ruby">{sponsor.name}</b>
-      <span className="text-[13px] text-ink-soft">{sponsor.description}</span>
-      {sponsor.status === "prospective" && (
-        <Chip tone="gold" className="mt-1.5 px-2! py-0! text-[11px]!">
-          Dự kiến
-        </Chip>
-      )}
+      {/* Chưa có thỏa thuận tài trợ: chỉ hiện tên dạng chữ. Trạng thái "dự kiến" nằm ở tiêu đề khối. */}
+      <b className="block font-display text-2xl leading-tight font-extrabold tracking-tight text-ruby">
+        {sponsor.name}
+      </b>
+      <span className="mt-0.5 text-[13px] text-ink-soft">{sponsor.description}</span>
     </>
   );
   return sponsor.url && sponsor.status === "confirmed" ? (

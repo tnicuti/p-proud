@@ -2,7 +2,7 @@
  * Nhà tài trợ và đối tác.
  *
  * QUY TẮC: chỉ đặt status = "confirmed" và thêm logo khi doanh nghiệp đã đồng ý BẰNG VĂN BẢN
- * cho P-Proud dùng logo. Khi còn "prospective", website chỉ hiện tên dạng chữ kèm chip "Dự kiến".
+ * cho P-Proud dùng logo. Khi còn "prospective", website chỉ hiện tên dạng chữ dưới tiêu đề "Đối tác dự kiến".
  *
  * Hiện logo: chép file vào public/sponsors/ (vd. da-huong.png), rồi sửa mục tương ứng thành
  *   { ..., status: "confirmed", logo: "/sponsors/da-huong.png", url: "https://..." }
