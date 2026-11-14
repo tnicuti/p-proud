@@ -72,18 +72,15 @@ Chỉ dùng ảnh do chính thành viên cung cấp (ảnh thật hoặc tranh v
 Hiện cả 6 ảnh là hình hoạt hình tạm do `scripts/make-team-avatars.py` vẽ ra, không theo ngoại hình thật của ai. Thành viên nào có ảnh riêng thì chép đè file tương ứng.
 Dòng "Phụ trách" của từng người: điền trường `duty` trong `src/content/team.ts`.
 
-## Đổi trạng thái nhà tài trợ
+## Nhà tài trợ và logo
 
-**Chỉ hiện logo khi doanh nghiệp đã đồng ý bằng văn bản cho P-Proud dùng logo.**
+Danh sách nằm trong `src/content/sponsors.ts`, file logo nằm trong `public/sponsors/`.
 
-1. Chép file logo vào `public/sponsors/`, ví dụ `da-huong.png`.
-2. Trong `src/content/sponsors.ts`, sửa mục tương ứng:
+- `status: "prospective"`: đối tác dự kiến, **chưa có thỏa thuận tài trợ**. Khối giữ tiêu đề "Đối tác dự kiến" và có dòng ghi chú bên dưới để người xem không hiểu nhầm.
+- `status: "confirmed"`: chỉ đặt khi doanh nghiệp đã đồng ý bằng văn bản. Khi có ít nhất một mục `confirmed`, tiêu đề tự đổi thành "Doanh nghiệp đồng hành".
 
-```ts
-{ name: "Dạ Hương", description: "Dược phẩm Hoa Linh", status: "confirmed", logo: "/sponsors/da-huong.png", url: "https://..." }
-```
-
-Khi có ít nhất một nhà tài trợ `confirmed`, tiêu đề khối tự đổi từ "Đối tác dự kiến" thành "Doanh nghiệp đồng hành".
+Thay logo: chép đè file cùng tên trong `public/sponsors/`, sửa `logoWidth` và `logoHeight` cho đúng kích thước file. Bỏ trường `logo` thì ô đó hiện tên dạng chữ.
+Logo là nhãn hiệu của doanh nghiệp: giữ nguyên màu và tỉ lệ, và gỡ ngay nếu doanh nghiệp yêu cầu.
 
 ## Thêm bài blog
 

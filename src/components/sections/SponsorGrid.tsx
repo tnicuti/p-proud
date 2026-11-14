@@ -2,25 +2,28 @@ import Image from "next/image";
 import { buttonClass } from "@/components/ui/Button";
 import { Wrap } from "@/components/ui/Layout";
 import { CONTACT_EMAIL } from "@/content/site";
-import { sponsors, sponsorSection, type Sponsor } from "@/content/sponsors";
+import { hasProspectiveSponsor, sponsors, sponsorSection, type Sponsor } from "@/content/sponsors";
 import { Eyebrow } from "./LocationSection";
 
 const cell =
   "flex min-h-24 flex-col items-center justify-center rounded-2xl border border-line bg-white px-4 py-3 text-center";
 
 function SponsorCell({ sponsor }: { sponsor: Sponsor }) {
-  const showLogo = sponsor.status === "confirmed" && sponsor.logo;
-  const body = showLogo ? (
-    <Image
-      src={sponsor.logo!}
-      alt={sponsor.name}
-      width={160}
-      height={48}
-      className="max-h-12 w-auto object-contain opacity-80 grayscale-[60%] transition duration-200 group-hover:opacity-100 group-hover:grayscale-0"
-    />
+  const body = sponsor.logo ? (
+    <span className="flex items-center justify-center gap-2.5">
+      {/* Logo giữ nguyên màu và tỉ lệ gốc của doanh nghiệp, cao tối đa 48px. */}
+      <Image
+        src={sponsor.logo}
+        alt={sponsor.logoIsMarkOnly ? "" : sponsor.name}
+        width={sponsor.logoWidth ?? 160}
+        height={sponsor.logoHeight ?? 48}
+        sizes="200px"
+        className={`max-h-12 w-auto object-contain ${sponsor.logoIsMarkOnly ? "rounded-lg" : ""}`}
+      />
+      {sponsor.logoIsMarkOnly && <b className="font-display text-xl font-extrabold text-ink">{sponsor.name}</b>}
+    </span>
   ) : (
     <>
-      {/* Chưa có thỏa thuận tài trợ: chỉ hiện tên dạng chữ. Trạng thái "dự kiến" nằm ở tiêu đề khối. */}
       <b className="block font-display text-2xl leading-tight font-extrabold tracking-tight text-ruby">
         {sponsor.name}
       </b>
@@ -28,27 +31,35 @@ function SponsorCell({ sponsor }: { sponsor: Sponsor }) {
     </>
   );
   return sponsor.url && sponsor.status === "confirmed" ? (
-    <a href={sponsor.url} target="_blank" rel="noopener" className={`group no-underline ${cell}`}>
+    <a href={sponsor.url} target="_blank" rel="noopener" className={`no-underline ${cell}`}>
       {body}
     </a>
   ) : (
-    <div className={`group ${cell}`}>{body}</div>
+    <div className={cell}>{body}</div>
   );
 }
 
 /** Lưới ô nhà tài trợ: 3 cột desktop, 2 cột mobile. Dùng chung cho Trang chủ và Cộng đồng. */
 export function SponsorGrid({ className = "" }: { className?: string }) {
   return (
-    <div className={`grid w-full grid-cols-3 gap-3 max-md:grid-cols-2 ${className}`}>
-      {sponsors.map((s) => (
-        <SponsorCell key={s.name} sponsor={s} />
-      ))}
-      <div className={`${cell} border-dashed border-rose bg-transparent`}>
-        <span className="mb-1.5 text-sm font-bold text-ink-soft">{sponsorSection.ctaText}</span>
-        <a href={`mailto:${CONTACT_EMAIL}`} className={buttonClass("ghost", "sm", "px-3! py-1!")}>
-          {sponsorSection.ctaButton}
-        </a>
+    <div className={`w-full ${className}`}>
+      <div className="grid grid-cols-3 gap-3 max-md:grid-cols-2 [.cols-2_&]:grid-cols-2">
+        {sponsors.map((s) => (
+          <SponsorCell key={s.name} sponsor={s} />
+        ))}
+        <div className={`${cell} border-dashed border-rose bg-transparent`}>
+          <span className="mb-1.5 text-sm font-bold text-ink-soft">{sponsorSection.ctaText}</span>
+          <a href={`mailto:${CONTACT_EMAIL}`} className={buttonClass("ghost", "sm", "px-3! py-1!")}>
+            {sponsorSection.ctaButton}
+          </a>
+        </div>
       </div>
+      {/* Luôn nói rõ khi còn đối tác ở mức dự kiến, để logo không bị hiểu là đã tài trợ. */}
+      {hasProspectiveSponsor && (
+        <p className="mx-auto mt-3 mb-0 max-w-[620px] text-center text-[13px] text-ink-soft">
+          {sponsorSection.prospectiveNote}
+        </p>
+      )}
     </div>
   );
 }

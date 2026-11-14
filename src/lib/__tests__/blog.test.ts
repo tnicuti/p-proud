@@ -148,10 +148,19 @@ describe("nội dung đợt 2", () => {
     expect(LOCATION_LONG).toContain("Quận 8, TP.HCM");
   });
 
-  it("nhà tài trợ dự kiến không được có logo", () => {
-    for (const s of sponsors) if (s.status === "prospective") expect(s.logo, s.name).toBeUndefined();
+  it("chưa ai xác nhận tài trợ thì khối phải ghi rõ là đối tác dự kiến", () => {
     expect(hasConfirmedSponsor).toBe(false);
     expect(sponsorSection.title).toBe("Đối tác dự kiến");
+    expect(sponsorSection.prospectiveNote).toContain("chưa có thỏa thuận tài trợ chính thức");
+  });
+
+  it("logo nhà tài trợ: file tồn tại và có kích thước", () => {
+    for (const s of sponsors) {
+      if (!s.logo) continue;
+      expect(publicFileExists(s.logo), s.logo).toBe(true);
+      expect(s.logoWidth, s.name).toBeGreaterThan(0);
+      expect(s.logoHeight, s.name).toBeGreaterThan(0);
+    }
   });
 
   it("đội ngũ 6 người, slug đúng thứ tự", () => {

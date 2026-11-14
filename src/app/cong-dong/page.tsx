@@ -57,7 +57,7 @@ export default function CommunityPage() {
             <Mascot name="pipi-flowers" height={160} className="mb-2.5" />
             <h3>Cảm ơn nhà tài trợ</h3>
             <p>P-Proud trân trọng sự đồng hành của các nhà tài trợ dự kiến đã cùng chung tay vì sức khỏe nữ sinh.</p>
-            <SponsorGrid className="grid-cols-2!" />
+            <SponsorGrid className="cols-2" />
           </Card>
         </Grid>
       </Block>
