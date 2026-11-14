@@ -1,6 +1,6 @@
 /** Diễn đàn: chủ đề, nội quy và 4 thread mẫu. Chép nguyên văn từ reference/index.html. */
 
-export const forumTopics = ["Kinh nguyệt", "Tuổi dậy thì", "Cảm xúc", "Bình đẳng giới"] as const;
+export const forumTopics = ["Kinh nguyệt", "Tuổi dậy thì", "Chăm sóc bản thân", "Cảm xúc", "Bình đẳng giới"] as const;
 export type ForumTopic = (typeof forumTopics)[number];
 
 export interface ForumAnswer {

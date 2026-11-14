@@ -1,5 +1,5 @@
 import { OpenChatButton } from "@/components/chat/ChatWidget";
-import { PostCard } from "@/components/sections/Cards";
+import { PostCard } from "@/components/blog/PostCards";
 import { LocationSection } from "@/components/sections/LocationSection";
 import { SponsorSection } from "@/components/sections/SponsorGrid";
 import { ButtonLink, buttonClass } from "@/components/ui/Button";
@@ -9,7 +9,7 @@ import { Block, Grid, Lead, Wrap } from "@/components/ui/Layout";
 import { Mascot } from "@/components/ui/Mascot";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { StatCard } from "@/components/ui/StatCard";
-import { posts } from "@/content/posts";
+import { getAllPosts } from "@/lib/posts";
 import { homeStats, LOCATION_SHORT, pillars, site } from "@/content/site";
 
 export default function HomePage() {
@@ -119,9 +119,11 @@ export default function HomePage() {
             }
           />
           <Grid cols={3}>
-            {posts.slice(0, 3).map((p) => (
-              <PostCard key={p.slug} post={p} />
-            ))}
+            {getAllPosts()
+              .slice(0, 3)
+              .map((p) => (
+                <PostCard key={p.slug} post={p} />
+              ))}
           </Grid>
         </Block>
       </Wrap>

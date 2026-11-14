@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState, ty
 import { Mascot } from "@/components/ui/Mascot";
 import { useFocusTrap } from "@/components/ui/useFocusTrap";
 import { pipiErrors, pipiGreeting, pipiNote, pipiSuggestions } from "@/content/pipi";
+import { deviceId } from "@/lib/device";
 import { renderLightMarkdown } from "@/lib/markdown";
 
 interface Msg {
@@ -25,20 +26,6 @@ export function useChat(): ChatApi {
   const ctx = useContext(ChatContext);
   if (!ctx) throw new Error("useChat phải nằm trong <ChatProvider>");
   return ctx;
-}
-
-const DEVICE_KEY = "pproud:device";
-function deviceId(): string {
-  try {
-    let id = localStorage.getItem(DEVICE_KEY);
-    if (!id) {
-      id = crypto.randomUUID();
-      localStorage.setItem(DEVICE_KEY, id);
-    }
-    return id;
-  } catch {
-    return "";
-  }
 }
 
 export function ChatProvider({ children }: { children: ReactNode }) {

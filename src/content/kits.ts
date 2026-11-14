@@ -12,6 +12,13 @@ export interface Kit {
   tags: [string, string];
   desc: string;
   outline: string[];
+  /**
+   * Link bản lật trang 3D (Heyzine). Có link thì card hiện nút "Đọc cẩm nang" và "Mở trong tab mới";
+   * không có thì giữ nút "Xem trước" (mục lục).
+   */
+  flipbookUrl?: string;
+  /** Dòng ghi chú nhỏ dưới card khi có bản lật trang. */
+  flipbookNote?: string;
 }
 
 export const kitFilters: { value: Audience | ""; label: string }[] = [
@@ -28,6 +35,8 @@ export const kits: Kit[] = [
     img: "pipi-wonder",
     tone: "blush",
     tags: ["Học sinh", "A5 · 35 trang"],
+    flipbookUrl: "https://heyzine.com/flip-book/89b0a47656.html",
+    flipbookNote: "Bản lật trang 3D · cập nhật bởi nhóm P-Proud",
     desc: "Sổ tay màu dễ thương giải thích chu kỳ, cách dùng băng vệ sinh và chăm sóc bản thân.",
     outline: [
       "Cơ thể mình đang lớn lên",

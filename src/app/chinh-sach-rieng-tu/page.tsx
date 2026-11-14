@@ -21,6 +21,8 @@ const sections = [
     items: [
       "Diễn đàn: chủ đề, câu hỏi, biệt danh (hoặc “Ẩn danh”) và thời gian đăng. Câu hỏi chỉ hiện sau khi người duyệt xem xong.",
       "Đăng ký Đại sứ: biệt danh, vai trò, lý do tham gia. Thầy cô và phụ huynh có thể để lại email hoặc số điện thoại nếu muốn.",
+      "Bình luận dưới bài blog: biệt danh, nội dung và thời gian gửi. Bình luận chỉ hiện sau khi người duyệt xem xong.",
+      "Lượt thích bài blog: chỉ lưu một mã ngẫu nhiên của thiết bị để mỗi thiết bị thích một lần.",
       "Trò chuyện với PiPi: không lưu nội dung trò chuyện.",
     ],
   },
@@ -36,6 +38,7 @@ const sections = [
     items: [
       "Website không dùng cookie quảng cáo hay công cụ theo dõi của bên thứ ba.",
       "Địa chỉ mạng (IP) chỉ được dùng tạm thời để chống gửi tin rác, không lưu lại.",
+      "Bản đồ ở trang chủ do OpenStreetMap cung cấp và cẩm nang lật trang do Heyzine cung cấp. Khi bạn xem hai phần này, trình duyệt sẽ tải nội dung từ máy chủ của họ.",
     ],
   },
   {

@@ -50,7 +50,11 @@ export interface QuestionInput {
   question: string;
   anonymous: boolean;
   nickname: string;
+  /** Slug bài blog mà câu hỏi liên quan (khi đi từ nút "Đặt câu hỏi trên Diễn đàn"). */
+  relatedPost: string | null;
 }
+
+export const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export function validateQuestion(raw: Record<string, unknown>): Result<QuestionInput> {
   const topic = str(raw.topic) as ForumTopic;
@@ -62,5 +66,30 @@ export function validateQuestion(raw: Record<string, unknown>): Result<QuestionI
   if (question.length < 10) return { ok: false, error: "Viết câu hỏi dài hơn một chút để mọi người hiểu ý bạn nhé." };
   if (!anonymous && !nickname) return { ok: false, error: "Nhập biệt danh hoặc chọn đăng ẩn danh nhé." };
   if (containsContactInfo(question) || containsContactInfo(nickname)) return { ok: false, error: PII_MESSAGE };
-  return { ok: true, value: { topic, question, anonymous, nickname } };
+  const related = str(raw.relatedPost).slice(0, 120);
+  const relatedPost = SLUG_RE.test(related) ? related : null;
+  return { ok: true, value: { topic, question, anonymous, nickname, relatedPost } };
+}
+
+export interface CommentInput {
+  nickname: string;
+  body: string;
+}
+
+export const COMMENT_LIMITS = { nickname: 30, bodyMin: 10, bodyMax: 500 } as const;
+
+/** Bình luận blog: biệt danh bắt buộc (≤ 30 ký tự), nội dung 10–500 ký tự, không số điện thoại/email. */
+export function validateComment(raw: Record<string, unknown>): Result<CommentInput> {
+  const nickname = str(raw.nickname);
+  const body = str(raw.body);
+  if (!nickname) return { ok: false, error: "Nhập một biệt danh nhé." };
+  if (nickname.length > COMMENT_LIMITS.nickname) return { ok: false, error: "Biệt danh tối đa 30 ký tự nhé." };
+  if (body.length < COMMENT_LIMITS.bodyMin) {
+    return { ok: false, error: "Viết bình luận dài hơn một chút nhé (ít nhất 10 ký tự)." };
+  }
+  if (body.length > COMMENT_LIMITS.bodyMax) return { ok: false, error: "Bình luận tối đa 500 ký tự nhé." };
+  if (containsContactInfo(nickname) || containsContactInfo(body)) {
+    return { ok: false, error: "Đừng chia sẻ số điện thoại hay email trong bình luận nhé." };
+  }
+  return { ok: true, value: { nickname, body } };
 }

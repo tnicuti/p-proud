@@ -6,11 +6,14 @@ export function Modal({
   open,
   onClose,
   labelledBy,
+  size = "md",
   children,
 }: {
   open: boolean;
   onClose: () => void;
   labelledBy: string;
+  /** "lg": rộng 90vw (tối đa 1100px), cao 85vh, dùng cho nội dung nhúng. */
+  size?: "md" | "lg";
   children: ReactNode;
 }) {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -34,7 +37,9 @@ export function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={labelledBy}
-        className="relative max-h-[86vh] w-full max-w-[680px] overflow-auto rounded-modal bg-white p-7"
+        className={`relative overflow-auto rounded-modal bg-white ${
+          size === "lg" ? "flex h-[85vh] w-[90vw] max-w-[1100px] flex-col p-5" : "max-h-[86vh] w-full max-w-[680px] p-7"
+        }`}
       >
         <button
           ref={closeRef}

@@ -16,4 +16,6 @@ export async function getPublicThreads(): Promise<ForumThread[]> {
 export const NOT_READY = {
   forum: "Diễn đàn đang được cài đặt, bạn quay lại sau nhé.",
   ambassador: "Form đăng ký đang được cài đặt, bạn quay lại sau nhé.",
+  like: "Nút thích đang được cài đặt, bạn quay lại sau nhé.",
+  comment: "Phần bình luận đang được cài đặt, bạn quay lại sau nhé.",
 };

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { bagItems, mfData, quizData } from "@/content/games";
 import { pipiSuggestions } from "@/content/pipi";
 import { pipiFallback } from "@/content/pipiScript";
-import { lessonQuestion, lessons } from "@/content/toolkit";
+import { lessonQuestion, lessons } from "@/content/kits";
 import { isPass, scoreBag, shuffle } from "../games";
 import { renderLightMarkdown } from "../markdown";
 import { containsContactInfo } from "../pii";

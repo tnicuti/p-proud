@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { cardClass } from "@/components/ui/Card";
@@ -24,9 +25,23 @@ function readLiked(): string[] {
   }
 }
 
-export function ForumBoard({ initialThreads }: { initialThreads: ForumThread[] }) {
+const isTopic = (v: string | null): v is ForumTopic => (forumTopics as readonly string[]).includes(v ?? "");
+
+export function ForumBoard({
+  initialThreads,
+  postTitles,
+}: {
+  initialThreads: ForumThread[];
+  /** slug → tiêu đề bài blog, để hiện "Liên quan đến bài: ..." khi đi từ một bài viết sang. */
+  postTitles: Record<string, string>;
+}) {
+  const params = useSearchParams();
+  const topicParam = params.get("chu-de");
+  const presetTopic = isTopic(topicParam) ? topicParam : "";
+  const relatedSlug = params.get("bai") ?? "";
+  const relatedPost = postTitles[relatedSlug] ? { slug: relatedSlug, title: postTitles[relatedSlug] } : null;
   const [threads, setThreads] = useState(initialThreads);
-  const [topic, setTopic] = useState<ForumTopic | "">("");
+  const [topic, setTopic] = useState<ForumTopic | "">(presetTopic);
   const [liked, setLiked] = useState<string[]>([]);
   const [reported, setReported] = useState<string[]>([]);
 
@@ -80,7 +95,7 @@ export function ForumBoard({ initialThreads }: { initialThreads: ForumThread[] }
       </div>
       <aside>
         <div className={cardClass("default", "mb-4")}>
-          <AskForm />
+          <AskForm presetTopic={presetTopic} relatedPost={relatedPost} />
         </div>
         <div className={cardClass("soft")}>
           <h4>📌 Nội quy cộng đồng</h4>
@@ -97,8 +112,14 @@ export function ForumBoard({ initialThreads }: { initialThreads: ForumThread[] }
   );
 }
 
-function AskForm() {
-  const [topic, setTopic] = useState("");
+function AskForm({
+  presetTopic,
+  relatedPost,
+}: {
+  presetTopic: ForumTopic | "";
+  relatedPost: { slug: string; title: string } | null;
+}) {
+  const [topic, setTopic] = useState<string>(presetTopic);
   const [question, setQuestion] = useState("");
   const [anonymous, setAnonymous] = useState(true);
   const [nickname, setNickname] = useState("");
@@ -108,7 +129,7 @@ function AskForm() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const payload = { topic, question, anonymous, nickname };
+    const payload = { topic, question, anonymous, nickname, relatedPost: relatedPost?.slug ?? null };
     const check = validateQuestion(payload);
     if (!check.ok) return setError(check.error);
     setError("");
@@ -141,6 +162,11 @@ function AskForm() {
   return (
     <>
       <h4>Đặt câu hỏi mới</h4>
+      {relatedPost && (
+        <p className="mb-1 rounded-[14px] bg-blush-soft px-3 py-2 text-sm">
+          Liên quan đến bài: <b>{relatedPost.title}</b>
+        </p>
+      )}
       <form noValidate onSubmit={onSubmit}>
         <label htmlFor="ask-topic">Chủ đề</label>
         <select id="ask-topic" value={topic} aria-required="true" onChange={(e) => (setTopic(e.target.value), clear())}>
