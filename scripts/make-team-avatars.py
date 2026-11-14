@@ -1,7 +1,7 @@
 """
 Vẽ ảnh đại diện hoạt hình tạm cho thành viên (SVG, nền trời xanh giống ảnh mẫu).
 
-Đây là hình minh họa chung, KHÔNG vẽ theo ngoại hình thật của ai. Khi thành viên có ảnh riêng,
+Đây là hình minh họa chung cho cả 6 người (cùng kích thước đầu, cùng nền), KHÔNG vẽ theo ngoại hình thật của ai. Khi thành viên có ảnh riêng,
 chỉ cần chép đè public/team/<slug>.webp.
 
 Chạy:  python scripts/make-team-avatars.py <thư mục xuất SVG>
@@ -80,23 +80,35 @@ def hair_short(c):
     return back, front
 
 
-def hair_long_wispy(c):
-    """Tóc dài thả, mái thưa: đường chân tóc cao, vài lọn mảnh rủ xuống trán."""
-    back = f'<path d="M110 210 C100 46 300 46 290 210 L300 376 C262 392 138 392 100 376 Z" fill="{c}"/>'
-    cap = f'<path d="M118 212 C108 56 292 56 282 212 C274 160 240 136 200 136 C160 136 126 160 118 212 Z" fill="{c}"/>'
-    strands = "".join(
-        f'<path d="M{x1} 136 Q{cx} 160 {x2} 184" stroke="{c}" stroke-width="{w}" fill="none" stroke-linecap="round" opacity=".9"/>'
-        for x1, cx, x2, w in [
-            (150, 146, 144, 5),
-            (166, 164, 160, 4),
-            (182, 182, 178, 5),
-            (198, 200, 197, 4),
-            (214, 216, 216, 5),
-            (230, 234, 234, 4),
-            (246, 252, 252, 5),
-        ]
+CURTAIN = (
+    "M118 216 C108 56 292 56 282 216 C279 192 264 174 246 165 C222 153 206 136 200 114 "
+    "C194 136 178 153 154 165 C136 174 121 192 118 216 Z"
+)
+
+
+def curtain_bangs(c):
+    """Mái bay: rẽ ngôi giữa, hai bên vén cong ra ngoài, đuôi mái hơi hất."""
+    tips = (
+        f'<path d="M119 204 Q104 224 110 246 Q124 230 130 208 Z" fill="{c}"/>'
+        f'<path d="M281 204 Q296 224 290 246 Q276 230 270 208 Z" fill="{c}"/>'
     )
-    return back, cap + strands
+    return f'<path d="{CURTAIN}" fill="{c}"/>' + tips
+
+
+def hair_long_curtain(c):
+    """Tóc dài thả, mái bay."""
+    back = f'<path d="M110 210 C100 46 300 46 290 210 L300 376 C262 392 138 392 100 376 Z" fill="{c}"/>'
+    return back, curtain_bangs(c)
+
+
+def hair_ponytail(c):
+    """Tóc buộc đuôi ngựa cao, mái bay."""
+    tail = (
+        f'<path d="M236 84 C282 44 336 78 330 146 C326 196 306 232 312 276 '
+        f'C284 256 276 206 284 160 C288 128 270 108 244 112 Z" fill="{c}"/>'
+    )
+    back = tail + f'<path d="M114 220 C104 52 296 52 286 220 L282 248 C250 232 150 232 118 248 Z" fill="{c}"/>'
+    return back, curtain_bangs(c)
 
 
 def hair_bun(c):
@@ -141,12 +153,21 @@ def avatar(hair, top, collar=None, glasses=False, earrings=None, extra=""):
     )
 
 
+BACKPACK_AND_CUP = (
+    '\n  <path d="M146 314 L128 400 L158 400 L170 308 Z" fill="#7D8590"/>'
+    '<path d="M254 314 L272 400 L242 400 L230 308 Z" fill="#7D8590"/>'
+    '\n  <path d="M92 338 L132 338 L127 400 L97 400 Z" fill="#F4EDE4"/>'
+    '<rect x="88" y="328" width="48" height="12" rx="5" fill="#5B3A33"/>'
+    '<path d="M94 358 L130 358 L128 384 L96 384 Z" fill="#B98A5E"/>'
+)
+
 HEADBAND = '\n  <path d="M124 168 C150 124 250 124 276 168 L270 178 C246 140 154 140 130 178 Z" fill="#F0BF49"/>'
 
 AVATARS = {
     "nhat-ha": avatar(hair_short("#2B1B17"), "#970A1D", collar="#FFFFFF", glasses=True, earrings="#F0BF49"),
     "kieu-trang": avatar(hair_wavy("#4A2C22"), "#F7F1EC", collar="#E999A7"),
-    "thuc-nhi": avatar(hair_long_wispy("#1F1A1C"), "#5FB894", glasses=True),
+    "uyen-phuong": avatar(hair_ponytail("#5A3524"), "#2A2A2E", glasses=True, extra=BACKPACK_AND_CUP),
+    "thuc-nhi": avatar(hair_long_curtain("#1F1A1C"), "#5FB894", glasses=True),
     "xuan-tiep": avatar(hair_bun("#3A241D"), "#F0BF49", collar="#FFFFFF"),
     "van-nhu": avatar(hair_pigtails("#2B1B17", "#E999A7"), "#E999A7", extra=HEADBAND),
 }

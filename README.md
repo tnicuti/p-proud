@@ -67,7 +67,7 @@ Thêm một tư thế mới: chép file vào `public/mascot/`, rồi thêm một
 
 Chỉ dùng ảnh do chính thành viên cung cấp (ảnh thật hoặc tranh vẽ từ ảnh của chính mình). Không dùng ảnh stock hay ảnh người khác.
 
-Hiện 5 ảnh (trừ Uyên Phương) là hình hoạt hình tạm do `scripts/make-team-avatars.py` vẽ ra, không theo ngoại hình thật của ai. Thành viên nào có ảnh riêng thì chép đè file tương ứng.
+Hiện cả 6 ảnh là hình hoạt hình tạm do `scripts/make-team-avatars.py` vẽ ra, không theo ngoại hình thật của ai. Thành viên nào có ảnh riêng thì chép đè file tương ứng.
 Dòng "Phụ trách" của từng người: điền trường `duty` trong `src/content/team.ts`.
 
 ## Đổi trạng thái nhà tài trợ
