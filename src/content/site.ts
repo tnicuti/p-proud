@@ -163,11 +163,15 @@ export const locationFacts = [
 ] as const;
 
 /**
- * Bản đồ OpenStreetMap chỉ hiện khu vực quận, KHÔNG ghim vị trí trường
+ * Bản đồ địa bàn là ẢNH TĨNH (public/location/quan-8.webp), không nhúng dịch vụ bản đồ bên ngoài.
+ * Thay ảnh: chép đè file đó (tỉ lệ khoảng 16:10) rồi build lại.
+ * Ảnh chỉ thể hiện khu vực, KHÔNG được đánh dấu riêng vị trí trường
  * (website cho trẻ em, không công khai nơi học sinh tập trung).
  */
 export const locationMap = {
-  src: "https://www.openstreetmap.org/export/embed.html?bbox=106.575%2C10.685%2C106.700%2C10.760&layer=mapnik",
-  title: "Bản đồ khu vực Quận 8, TP.HCM",
+  image: "/location/quan-8.webp",
+  width: 963,
+  height: 604,
+  alt: "Bản đồ khu vực Quận 8, TP.HCM, gồm các phường Chánh Hưng, Phú Định và Bình Đông",
   caption: "Bản đồ minh họa khu vực Quận 8.",
 };

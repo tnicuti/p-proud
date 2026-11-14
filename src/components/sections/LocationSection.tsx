@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CalendarIcon, PeopleIcon, PinIcon, SchoolIcon } from "@/components/ui/icons";
 import { Mascot } from "@/components/ui/Mascot";
 import { locationFacts, locationMap } from "@/content/site";
@@ -33,12 +34,13 @@ export function LocationSection() {
         <Mascot name="pipi-hi" height={110} className="absolute right-0 bottom-0 max-sm:hidden" />
       </div>
       <figure className="m-0 flex flex-col">
-        <div className="min-h-[300px] flex-1 overflow-hidden rounded-card border border-line bg-white shadow-card">
-          <iframe
-            src={locationMap.src}
-            title={locationMap.title}
-            loading="lazy"
-            className="block h-full min-h-[300px] w-full border-0"
+        <div className="relative min-h-[300px] flex-1 overflow-hidden rounded-card border border-line bg-white shadow-card">
+          <Image
+            src={locationMap.image}
+            alt={locationMap.alt}
+            fill
+            sizes="(max-width: 820px) 100vw, 560px"
+            className="object-cover"
           />
         </div>
         <figcaption className="mt-2 text-center text-[13px] text-ink-soft">{locationMap.caption}</figcaption>

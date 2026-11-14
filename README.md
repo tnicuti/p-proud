@@ -32,6 +32,8 @@ Toàn bộ chữ nằm trong `src/content/`, không cần đụng vào giao di�
 | File | Nội dung |
 |---|---|
 | `site.ts` | Địa bàn (`LOCATION_SHORT`, `LOCATION_LONG`), email liên hệ, số liệu, giai đoạn, ba chữ P, hoạt động, bản đồ |
+
+Bản đồ địa bàn ở trang chủ là ảnh tĩnh `public/location/quan-8.webp`. Muốn đổi thì chép đè file này. Không đánh dấu riêng vị trí trường trên ảnh.
 | `mascot.ts` | Danh sách ảnh mascot, logo và mô tả ảnh (alt) |
 | `sponsors.ts` | Nhà tài trợ và trạng thái dự kiến / đã xác nhận |
 | `team.ts` | Đội ngũ, vai trò, dòng "Phụ trách" |

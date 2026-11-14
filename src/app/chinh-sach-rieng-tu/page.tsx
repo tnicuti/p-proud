@@ -38,7 +38,7 @@ const sections = [
     items: [
       "Website không dùng cookie quảng cáo hay công cụ theo dõi của bên thứ ba.",
       "Địa chỉ mạng (IP) chỉ được dùng tạm thời để chống gửi tin rác, không lưu lại.",
-      "Bản đồ ở trang chủ do OpenStreetMap cung cấp và cẩm nang lật trang do Heyzine cung cấp. Khi bạn xem hai phần này, trình duyệt sẽ tải nội dung từ máy chủ của họ.",
+      "Cẩm nang lật trang do Heyzine cung cấp. Khi bạn mở cẩm nang, trình duyệt sẽ tải nội dung từ máy chủ của họ.",
     ],
   },
   {
