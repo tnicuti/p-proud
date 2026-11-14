@@ -166,7 +166,7 @@ HEADBAND = '\n  <path d="M124 168 C150 124 250 124 276 168 L270 178 C246 140 154
 AVATARS = {
     "nhat-ha": avatar(hair_short("#2B1B17"), "#970A1D", collar="#FFFFFF", glasses=True, earrings="#F0BF49"),
     "kieu-trang": avatar(hair_wavy("#4A2C22"), "#F7F1EC", collar="#E999A7"),
-    "uyen-phuong": avatar(hair_ponytail("#5A3524"), "#2A2A2E", glasses=True, extra=BACKPACK_AND_CUP),
+    "uyen-phuong": avatar(hair_ponytail("#5A3524"), "#2A2A2E", extra=BACKPACK_AND_CUP),
     "thuc-nhi": avatar(hair_long_curtain("#1F1A1C"), "#5FB894", glasses=True),
     "xuan-tiep": avatar(hair_bun("#3A241D"), "#F0BF49", collar="#FFFFFF"),
     "van-nhu": avatar(hair_pigtails("#2B1B17", "#E999A7"), "#E999A7", extra=HEADBAND),
