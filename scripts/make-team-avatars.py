@@ -73,6 +73,32 @@ def hair_bob(c):
     return back, front
 
 
+def hair_short(c):
+    """Tóc ngắn ngang cằm, mái chéo."""
+    back = f'<path d="M110 214 C100 48 300 48 290 214 L286 262 C262 276 138 276 114 262 Z" fill="{c}"/>'
+    front = f'<path d="M118 214 C108 56 292 56 282 214 C276 170 250 142 226 138 C196 172 146 170 118 214 Z" fill="{c}"/>'
+    return back, front
+
+
+def hair_long_wispy(c):
+    """Tóc dài thả, mái thưa: đường chân tóc cao, vài lọn mảnh rủ xuống trán."""
+    back = f'<path d="M110 210 C100 46 300 46 290 210 L300 376 C262 392 138 392 100 376 Z" fill="{c}"/>'
+    cap = f'<path d="M118 212 C108 56 292 56 282 212 C274 160 240 136 200 136 C160 136 126 160 118 212 Z" fill="{c}"/>'
+    strands = "".join(
+        f'<path d="M{x1} 136 Q{cx} 160 {x2} 184" stroke="{c}" stroke-width="{w}" fill="none" stroke-linecap="round" opacity=".9"/>'
+        for x1, cx, x2, w in [
+            (150, 146, 144, 5),
+            (166, 164, 160, 4),
+            (182, 182, 178, 5),
+            (198, 200, 197, 4),
+            (214, 216, 216, 5),
+            (230, 234, 234, 4),
+            (246, 252, 252, 5),
+        ]
+    )
+    return back, cap + strands
+
+
 def hair_bun(c):
     back = f'<circle cx="200" cy="88" r="40" fill="{c}"/><path d="M114 220 C104 52 296 52 286 220 L282 250 C250 232 150 232 118 250 Z" fill="{c}"/>'
     front = f'<path d="M118 212 C110 58 290 58 282 212 C270 164 236 142 200 150 C164 142 130 164 118 212 Z" fill="{c}"/>'
@@ -118,9 +144,9 @@ def avatar(hair, top, collar=None, glasses=False, earrings=None, extra=""):
 HEADBAND = '\n  <path d="M124 168 C150 124 250 124 276 168 L270 178 C246 140 154 140 130 178 Z" fill="#F0BF49"/>'
 
 AVATARS = {
-    "nhat-ha": avatar(hair_long("#2B1B17"), "#970A1D", collar="#FFFFFF", earrings="#F0BF49"),
+    "nhat-ha": avatar(hair_short("#2B1B17"), "#970A1D", collar="#FFFFFF", glasses=True, earrings="#F0BF49"),
     "kieu-trang": avatar(hair_wavy("#4A2C22"), "#F7F1EC", collar="#E999A7"),
-    "thuc-nhi": avatar(hair_bob("#1F1A1C"), "#5FB894", glasses=True),
+    "thuc-nhi": avatar(hair_long_wispy("#1F1A1C"), "#5FB894", glasses=True),
     "xuan-tiep": avatar(hair_bun("#3A241D"), "#F0BF49", collar="#FFFFFF"),
     "van-nhu": avatar(hair_pigtails("#2B1B17", "#E999A7"), "#E999A7", extra=HEADBAND),
 }
