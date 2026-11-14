@@ -8,12 +8,20 @@ export const toneBg: Record<Tone, string> = {
   mint: "bg-mint-soft",
 };
 
+/**
+ * Địa bàn dự án. Đổi ở đây (vd. thành "các trường THCS ở Quận 8, TP.HCM") là mọi nơi đổi theo.
+ */
+export const LOCATION_SHORT = "Quận 8, TP.HCM";
+export const LOCATION_LONG = "trường THCS đối tác ở Quận 8, TP.HCM";
+
+/** Email liên hệ (ô kêu gọi tài trợ). */
+export const CONTACT_EMAIL = "pproud@gmail.com";
+
 export const site = {
   name: "P-Proud",
   tagline: "Kiêu hãnh đón “kỳ”, tự tin con gái",
   taglineEn: "Be Proud of your Period",
-  description:
-    "P-Proud là người bạn đồng hành giúp nữ sinh lớp 6–7 hiểu đúng về kinh nguyệt và tuổi dậy thì, tự tin chăm sóc bản thân và biết tìm sự hỗ trợ khi cần.",
+  description: `P-Proud là người bạn đồng hành giúp nữ sinh lớp 6–7 tại ${LOCATION_LONG} hiểu đúng về kinh nguyệt và tuổi dậy thì, tự tin chăm sóc bản thân và biết tìm sự hỗ trợ khi cần.`,
   demoBanner: "Bản demo website dự án P-Proud – nội dung và số liệu mang tính minh họa",
 };
 
@@ -26,22 +34,6 @@ export const navItems = [
   { href: "/dien-dan", label: "Diễn đàn" },
   { href: "/tro-choi", label: "Góc trò chơi" },
 ] as const;
-
-export const sponsors = [
-  { n: "Dạ Hương", d: "Dược phẩm Hoa Linh" },
-  { n: "Diana", d: "Diana Unicharm Việt Nam" },
-  { n: "Laurier", d: "Kao Việt Nam" },
-  { n: "TELOS", d: "Thiết kế website" },
-];
-
-export const team = [
-  { initials: "NH", name: "Nhật Hà", role: "Quản lý dự án" },
-  { initials: "KT", name: "Kiều Trang", role: "Trưởng nhóm đối tác" },
-  { initials: "UP", name: "Uyên Phương", role: "Trưởng nhóm nội dung" },
-  { initials: "TN", name: "Thục Nhi", role: "Trưởng nhóm website" },
-  { initials: "XT", name: "Xuân Tiếp", role: "Trưởng nhóm vận hành" },
-  { initials: "VN", name: "Vân Như", role: "Trưởng nhóm giám sát và đánh giá" },
-];
 
 export const phases = [
   {
@@ -103,7 +95,7 @@ export const homeStats = [
   { value: "120", label: "nữ sinh lớp 6–7 tham gia" },
   { value: "6", label: "bài học tương tác" },
   { value: "100%", label: "học sinh nhận bộ vật dụng vệ sinh" },
-  { value: "23", label: "tuần triển khai dự án" },
+  { value: "Q.8", label: "TP.HCM · địa bàn triển khai", pin: true },
 ];
 
 export const communityStats = [
@@ -157,3 +149,25 @@ export const highlights = [
     desc: "Tủ băng vệ sinh, sách và poster ở lại trường để hỗ trợ các khóa sau.",
   },
 ] as const;
+
+/** Khối "Nơi P-Proud triển khai" ở trang chủ. */
+export const locationFacts = [
+  { icon: "pin", label: "Địa bàn", text: LOCATION_SHORT },
+  { icon: "school", label: "Trường", text: "Trường THCS đối tác (tên trường cập nhật khi có thỏa thuận chính thức)" },
+  { icon: "people", label: "Học sinh", text: "khoảng 120 nữ sinh lớp 6–7" },
+  {
+    icon: "calendar",
+    label: "Lớp học trực tiếp",
+    text: "6 buổi, tuần 18–20 của dự án, kết hợp học online trên website",
+  },
+] as const;
+
+/**
+ * Bản đồ OpenStreetMap chỉ hiện khu vực quận, KHÔNG ghim vị trí trường
+ * (website cho trẻ em, không công khai nơi học sinh tập trung).
+ */
+export const locationMap = {
+  src: "https://www.openstreetmap.org/export/embed.html?bbox=106.575%2C10.685%2C106.700%2C10.760&layer=mapnik",
+  title: "Bản đồ khu vực Quận 8, TP.HCM",
+  caption: "Bản đồ minh họa khu vực Quận 8.",
+};

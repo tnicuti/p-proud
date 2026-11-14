@@ -3,7 +3,7 @@
  * `body` là HTML tĩnh do nhóm soạn (không nhận dữ liệu người dùng).
  * Thêm bài mới: thêm một phần tử với slug không dấu, không trùng.
  */
-import type { MascotName } from "@/lib/mascot";
+import type { MascotName } from "@/content/mascot";
 import type { Tone } from "./site";
 
 export const blogTopics = ["Kinh nguyệt", "Tuổi dậy thì", "Chăm sóc bản thân", "Bình đẳng giới"] as const;

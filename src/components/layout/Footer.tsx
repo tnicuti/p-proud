@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { OpenChatButton } from "@/components/chat/ChatWidget";
+import { logos } from "@/content/mascot";
 import { Wrap } from "@/components/ui/Layout";
 
 const linkClass = "mb-1.5 block text-white no-underline opacity-90 hover:opacity-100 hover:underline";
@@ -9,7 +11,14 @@ export function Footer() {
     <footer className="mt-10 bg-ruby pt-10 pb-7 text-white">
       <Wrap className="grid grid-cols-[2fr_1fr_1fr] gap-6 max-md:grid-cols-1">
         <div>
-          <h3 className="text-white">P-Proud</h3>
+          <Image
+            src={logos.white.src}
+            alt={logos.white.alt}
+            width={Math.round((logos.white.width / logos.white.height) * 40)}
+            height={40}
+            className="mb-3 w-auto"
+            style={{ height: 40 }}
+          />
           <p className="opacity-90">
             Kiêu hãnh đón “kỳ”, tự tin con gái. Dự án giáo dục sức khỏe kinh nguyệt cho nữ sinh lớp 6–7, thực hiện bởi
             Nhóm 1 – UEH.

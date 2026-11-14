@@ -4,6 +4,7 @@ import { ChatProvider } from "@/components/chat/ChatWidget";
 import { DemoBanner } from "@/components/layout/DemoBanner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { shareImage } from "@/content/mascot";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -34,9 +35,8 @@ export const metadata: Metadata = {
     siteName: "P-Proud",
     title: fullTitle,
     description: site.description,
-    images: [{ url: "/mascot/logo.png", width: 900, height: 343, alt: "P-Proud" }],
+    images: [shareImage],
   },
-  icons: { icon: "/mascot/pipi-main.png" },
 };
 
 export const viewport: Viewport = { themeColor: "#970A1D" };

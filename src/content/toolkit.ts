@@ -1,5 +1,5 @@
 /** Bộ công cụ và 6 bài học. Chép nguyên văn từ reference/index.html. */
-import type { MascotName } from "@/lib/mascot";
+import type { MascotName } from "@/content/mascot";
 import type { Tone } from "./site";
 
 export type Audience = "hs" | "gv" | "ph";

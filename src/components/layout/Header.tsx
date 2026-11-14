@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navItems } from "@/content/site";
-import { logoImage } from "@/lib/mascot";
+import { logos } from "@/content/mascot";
 
 function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
@@ -29,14 +29,14 @@ export function Header() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const logoW = Math.round((logoImage.width / logoImage.height) * 44);
+  const logoW = Math.round((logos.color.width / logos.color.height) * 44);
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-[rgba(255,246,247,.94)] backdrop-blur-[8px]">
       <div className="relative mx-auto flex h-[72px] w-full max-w-[1160px] items-center gap-4 px-5">
         <Link href="/" aria-label="P-Proud trang chủ" className="shrink-0">
           <Image
-            src={logoImage}
+            src={logos.color.src}
             alt="P-Proud"
             width={logoW}
             height={44}

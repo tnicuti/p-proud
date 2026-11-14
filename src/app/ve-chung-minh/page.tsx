@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { MemberCard, PhaseCard } from "@/components/sections/Cards";
+import { PhaseCard } from "@/components/sections/Cards";
+import { MemberCard } from "@/components/sections/MemberCard";
 import { Card } from "@/components/ui/Card";
 import { Block, Grid, Lead, Wrap } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { phases, stakeholders, team } from "@/content/site";
+import { phases, stakeholders } from "@/content/site";
+import { team } from "@/content/team";
 
 export const metadata: Metadata = {
   title: "Về chúng mình",
@@ -62,9 +64,9 @@ export default function AboutPage() {
 
       <Block>
         <h2>Đội ngũ P-Proud</h2>
-        <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-5">
+        <div className="mt-6 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-xs:grid-cols-1">
           {team.map((m) => (
-            <MemberCard key={m.initials} {...m} />
+            <MemberCard key={m.slug} member={m} />
           ))}
         </div>
       </Block>

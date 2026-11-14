@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { cardClass } from "@/components/ui/Card";
 import { Mascot } from "@/components/ui/Mascot";
 import { PointsBadge } from "@/components/ui/PointsBadge";
-import type { MascotName } from "@/lib/mascot";
+import type { MascotName } from "@/content/mascot";
 import { readPoints, writePoints } from "@/lib/points";
 import { MythFactGame } from "./MythFactGame";
 import { PeriodBagGame } from "./PeriodBagGame";

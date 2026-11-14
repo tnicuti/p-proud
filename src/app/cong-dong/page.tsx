@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { AmbassadorForm } from "@/components/sections/AmbassadorForm";
-import { SponsorList } from "@/components/sections/Cards";
+import { SponsorGrid } from "@/components/sections/SponsorGrid";
 import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
 import { Block, Grid, Wrap } from "@/components/ui/Layout";
 import { Mascot } from "@/components/ui/Mascot";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { StatCard } from "@/components/ui/StatCard";
-import { communityStats, highlights, sponsors, toneBg } from "@/content/site";
+import { communityStats, highlights, toneBg } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Cộng đồng",
@@ -57,7 +57,7 @@ export default function CommunityPage() {
             <Mascot name="pipi-flowers" height={160} className="mb-2.5" />
             <h3>Cảm ơn nhà tài trợ</h3>
             <p>P-Proud trân trọng sự đồng hành của các nhà tài trợ dự kiến đã cùng chung tay vì sức khỏe nữ sinh.</p>
-            <SponsorList sponsors={sponsors} />
+            <SponsorGrid className="grid-cols-2!" />
           </Card>
         </Grid>
       </Block>

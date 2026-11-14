@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { MascotName } from "@/lib/mascot";
+import type { MascotName } from "@/content/mascot";
 import { Chip } from "./Chip";
 import { Lead } from "./Layout";
 import { Mascot } from "./Mascot";
